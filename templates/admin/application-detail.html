@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application TA-2026-0084 — Al-Safar Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script src="../assets/js/tailwind.config.js"></script>
+  <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body data-admin-page="applications" data-title="Application File: TA-2026-0084" class="bg-surface font-sans text-ink antialiased">
+  <div data-layout="admin-sidebar"></div>
+
+  <div class="lg:pl-72 flex flex-col min-h-screen">
+    <div data-layout="admin-topbar"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 font-en">
+      <!-- Header Bar (DESIGN.md §7: Header tracking code, client, service) -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div class="flex items-start gap-4">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-primary-100 text-primary-800 font-mono font-bold text-lg">084</span>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-mono text-xs font-bold text-primary-800 bg-primary-50 px-2.5 py-0.5 rounded border border-primary-200">TA-2026-0084</span>
+                <span class="rounded-full bg-accent/20 px-2.5 py-0.5 text-xs font-bold text-ink">Embassy Stamping</span>
+                <span class="text-xs text-slate-500">File Created: 12 Sep 2026</span>
+              </div>
+              <h2 class="text-2xl font-bold text-ink">Md Kamrul Hasan</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Service: <b class="text-slate-800">Saudi Arabia — Heavy Driver</b> (Demand: SA-DRV-2026-08) · Officer: <b class="text-slate-800">Rahim Khan</b></p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="../track.html" target="_blank" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+              <i data-lucide="external-link" class="h-3.5 w-3.5"></i> Public Track View
+            </a>
+            <button class="inline-flex items-center gap-1.5 rounded-xl bg-primary-700 px-4 py-2 text-xs font-semibold text-white hover:bg-primary-800 shadow-soft">
+              <i data-lucide="check" class="h-3.5 w-3.5"></i> Update Status
+            </button>
+          </div>
+        </div>
+
+        <!-- Status Stepper (DESIGN.md §7: status stepper) -->
+        <div class="pt-6 overflow-x-auto no-scrollbar">
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Processing Pipeline</p>
+          <div class="flex items-center min-w-[640px] text-xs">
+            <!-- Step 1: Completed -->
+            <div class="flex items-center gap-2 flex-1">
+              <span class="grid h-7 w-7 place-items-center rounded-full bg-success text-white font-bold"><i data-lucide="check" class="h-4 w-4"></i></span>
+              <div>
+                <p class="font-bold text-ink">Documents Received</p>
+                <p class="text-[10px] text-slate-400">12 Sep 2026</p>
+              </div>
+              <div class="h-0.5 bg-success flex-1 mx-2"></div>
+            </div>
+
+            <!-- Step 2: Completed -->
+            <div class="flex items-center gap-2 flex-1">
+              <span class="grid h-7 w-7 place-items-center rounded-full bg-success text-white font-bold"><i data-lucide="check" class="h-4 w-4"></i></span>
+              <div>
+                <p class="font-bold text-ink">Medical Fit (GAMCA)</p>
+                <p class="text-[10px] text-slate-400">19 Sep 2026</p>
+              </div>
+              <div class="h-0.5 bg-success flex-1 mx-2"></div>
+            </div>
+
+            <!-- Step 3: Current Active -->
+            <div class="flex items-center gap-2 flex-1">
+              <span class="grid h-7 w-7 place-items-center rounded-full bg-accent text-ink font-bold ring-4 ring-accent-100 animate-pulse">3</span>
+              <div>
+                <p class="font-bold text-primary-800">Embassy Stamping</p>
+                <p class="text-[10px] text-accent-700 font-semibold">In Progress (Tashir)</p>
+              </div>
+              <div class="h-0.5 bg-slate-200 flex-1 mx-2"></div>
+            </div>
+
+            <!-- Step 4: Pending -->
+            <div class="flex items-center gap-2 flex-1 opacity-50">
+              <span class="grid h-7 w-7 place-items-center rounded-full border border-slate-300 bg-white text-slate-500 font-bold">4</span>
+              <div>
+                <p class="font-bold text-slate-600">BMET Smart Card</p>
+                <p class="text-[10px] text-slate-400">Pending</p>
+              </div>
+              <div class="h-0.5 bg-slate-200 flex-1 mx-2"></div>
+            </div>
+
+            <!-- Step 5: Pending -->
+            <div class="flex items-center gap-2 opacity-50">
+              <span class="grid h-7 w-7 place-items-center rounded-full border border-slate-300 bg-white text-slate-500 font-bold">5</span>
+              <div>
+                <p class="font-bold text-slate-600">Flight Ticket</p>
+                <p class="text-[10px] text-slate-400">Pending</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Tabs Section (DESIGN.md §7: tabs Details, Documents verify toggle, Payments, Timeline/Notes, Communication) -->
+      <div data-tabs class="space-y-6">
+        <!-- Tab Navigation -->
+        <div class="flex border-b border-slate-200 bg-white px-6 rounded-2xl shadow-soft overflow-x-auto no-scrollbar gap-2">
+          <button role="tab" data-tab="details" aria-selected="true" class="py-4 px-4 font-semibold text-sm border-b-2 border-transparent aria-selected:border-primary-700 aria-selected:text-primary-700 whitespace-nowrap">
+            Applicant Details
+          </button>
+          <button role="tab" data-tab="documents" aria-selected="false" class="py-4 px-4 font-semibold text-sm border-b-2 border-transparent aria-selected:border-primary-700 aria-selected:text-primary-700 whitespace-nowrap flex items-center gap-2">
+            Documents (Private) <span class="rounded-full bg-accent px-2 py-0.5 text-[11px] font-bold text-ink">4 Verified</span>
+          </button>
+          <button role="tab" data-tab="payments" aria-selected="false" class="py-4 px-4 font-semibold text-sm border-b-2 border-transparent aria-selected:border-primary-700 aria-selected:text-primary-700 whitespace-nowrap">
+            Payments &amp; Receipts
+          </button>
+          <button role="tab" data-tab="timeline" aria-selected="false" class="py-4 px-4 font-semibold text-sm border-b-2 border-transparent aria-selected:border-primary-700 aria-selected:text-primary-700 whitespace-nowrap">
+            Timeline &amp; Internal Notes
+          </button>
+          <button role="tab" data-tab="communication" aria-selected="false" class="py-4 px-4 font-semibold text-sm border-b-2 border-transparent aria-selected:border-primary-700 aria-selected:text-primary-700 whitespace-nowrap">
+            Communication (SMS / WhatsApp)
+          </button>
+        </div>
+
+        <!-- Tab 1: Details -->
+        <div data-panel="details" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft space-y-6">
+          <h3 class="text-base font-bold text-ink">Applicant Bio &amp; Passport Parameters</h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
+            <div><p class="text-xs text-slate-500 font-medium">Full Name (English)</p><p class="font-semibold text-ink mt-1">MD KAMRUL HASAN</p></div>
+            <div><p class="text-xs text-slate-500 font-medium">Name (Bangla)</p><p class="font-sans font-semibold text-ink mt-1">মোঃ কামরুল হাসান</p></div>
+            <div><p class="text-xs text-slate-500 font-medium">Passport Number</p><p class="font-mono font-bold text-primary-800 mt-1">A04829104 (Expiry: 14 Aug 2031)</p></div>
+            <div><p class="text-xs text-slate-500 font-medium">National ID (NID)</p><p class="font-mono text-slate-800 mt-1">1988269123000045</p></div>
+            <div><p class="text-xs text-slate-500 font-medium">Date of Birth / Age</p><p class="text-slate-800 mt-1">10 March 1988 (38 years)</p></div>
+            <div><p class="text-xs text-slate-500 font-medium">Phone Number</p><p class="font-mono text-slate-800 mt-1">01712345678</p></div>
+            <div><p class="text-xs text-slate-500 font-medium">Father's Name</p><p class="text-slate-800 mt-1">Abdul Kader Mia</p></div>
+            <div><p class="text-xs text-slate-500 font-medium">District / Home Address</p><p class="text-slate-800 mt-1">Comilla, Bangladesh</p></div>
+            <div><p class="text-xs text-slate-500 font-medium">Emergency Contact</p><p class="text-slate-800 mt-1">Brother: 01819998877</p></div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Documents (Verify Toggle) (DESIGN.md §7: verify toggle) -->
+        <div data-panel="documents" class="hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-soft space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div>
+              <h3 class="text-base font-bold text-ink">Private Storage Document Vault</h3>
+              <p class="text-xs text-slate-500">Stored on encrypted private disk (not accessible via public URLs). Toggle verification after review.</p>
+            </div>
+            <button class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-semibold hover:bg-slate-50">
+              <i data-lucide="upload" class="h-3.5 w-3.5"></i> Upload Additional Doc
+            </button>
+          </div>
+
+          <!-- Doc Items with Verify Toggle -->
+          <div class="space-y-3">
+            <!-- Doc 1 -->
+            <div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+              <div class="flex items-center gap-3">
+                <span class="grid h-10 w-10 place-items-center rounded-lg bg-red-100 text-danger"><i data-lucide="file-text" class="h-5 w-5"></i></span>
+                <div>
+                  <p class="font-bold text-sm text-ink">Original Passport Scan (Bio Page)</p>
+                  <p class="text-xs text-slate-400">PDF · 2.4 MB · Uploaded 12 Sep 2026</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <button class="text-xs font-semibold text-primary-700 hover:underline flex items-center gap-1">
+                  <i data-lucide="eye" class="h-3.5 w-3.5"></i> Preview
+                </button>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked class="rounded border-slate-300 text-success focus:ring-0">
+                  <span class="text-xs font-bold text-success">Verified</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Doc 2 -->
+            <div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+              <div class="flex items-center gap-3">
+                <span class="grid h-10 w-10 place-items-center rounded-lg bg-blue-100 text-info"><i data-lucide="award" class="h-5 w-5"></i></span>
+                <div>
+                  <p class="font-bold text-sm text-ink">Heavy Driving License (BRTA Front &amp; Back)</p>
+                  <p class="text-xs text-slate-400">JPG · 1.1 MB · Uploaded 12 Sep 2026</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <button class="text-xs font-semibold text-primary-700 hover:underline flex items-center gap-1">
+                  <i data-lucide="eye" class="h-3.5 w-3.5"></i> Preview
+                </button>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked class="rounded border-slate-300 text-success focus:ring-0">
+                  <span class="text-xs font-bold text-success">Verified</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Doc 3 -->
+            <div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+              <div class="flex items-center gap-3">
+                <span class="grid h-10 w-10 place-items-center rounded-lg bg-green-100 text-success"><i data-lucide="activity" class="h-5 w-5"></i></span>
+                <div>
+                  <p class="font-bold text-sm text-ink">GAMCA Medical Fit Certificate</p>
+                  <p class="text-xs text-slate-400">PDF · 980 KB · Uploaded 19 Sep 2026</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <button class="text-xs font-semibold text-primary-700 hover:underline flex items-center gap-1">
+                  <i data-lucide="eye" class="h-3.5 w-3.5"></i> Preview
+                </button>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked class="rounded border-slate-300 text-success focus:ring-0">
+                  <span class="text-xs font-bold text-success">Verified</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Doc 4 -->
+            <div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+              <div class="flex items-center gap-3">
+                <span class="grid h-10 w-10 place-items-center rounded-lg bg-slate-200 text-slate-700"><i data-lucide="shield" class="h-5 w-5"></i></span>
+                <div>
+                  <p class="font-bold text-sm text-ink">Police Clearance Certificate</p>
+                  <p class="text-xs text-slate-400">PDF · 1.4 MB · Uploaded 22 Sep 2026</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <button class="text-xs font-semibold text-primary-700 hover:underline flex items-center gap-1">
+                  <i data-lucide="eye" class="h-3.5 w-3.5"></i> Preview
+                </button>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" class="rounded border-slate-300 text-success focus:ring-0">
+                  <span class="text-xs font-bold text-slate-500">Pending Verify</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Payments -->
+        <div data-panel="payments" class="hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-soft space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-base font-bold text-ink">Financial Ledger &amp; Invoices</h3>
+              <p class="text-xs text-slate-500">Agreed Contract Package: ৳ 1,20,000</p>
+            </div>
+            <button class="inline-flex items-center gap-1.5 rounded-xl bg-primary-700 px-4 py-2 text-xs font-semibold text-white hover:bg-primary-800">
+              <i data-lucide="plus" class="h-3.5 w-3.5"></i> Record Payment
+            </button>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm">
+            <div><p class="text-xs text-slate-500">Total Agreed</p><p class="text-lg font-bold text-ink">৳ 1,20,000</p></div>
+            <div><p class="text-xs text-slate-500">Total Received</p><p class="text-lg font-bold text-success">৳ 85,000</p></div>
+            <div><p class="text-xs text-slate-500">Remaining Balance</p><p class="text-lg font-bold text-danger">৳ 35,000</p></div>
+          </div>
+
+          <table class="w-full text-left text-sm">
+            <thead class="border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase">
+              <tr>
+                <th class="py-2.5">Receipt #</th>
+                <th class="py-2.5">Date</th>
+                <th class="py-2.5">Method</th>
+                <th class="py-2.5">Amount</th>
+                <th class="py-2.5 text-right">Receipt PDF</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-xs">
+              <tr>
+                <td class="py-3 font-mono font-bold text-primary-800">REC-2026-041</td>
+                <td class="py-3">12 Sep 2026</td>
+                <td class="py-3">Bank Transfer (BRAC Bank)</td>
+                <td class="py-3 font-bold text-ink">৳ 50,000</td>
+                <td class="py-3 text-right"><button class="text-primary-700 hover:underline">Download PDF</button></td>
+              </tr>
+              <tr>
+                <td class="py-3 font-mono font-bold text-primary-800">REC-2026-068</td>
+                <td class="py-3">19 Sep 2026</td>
+                <td class="py-3">Cash (Dhanmondi Branch)</td>
+                <td class="py-3 font-bold text-ink">৳ 35,000</td>
+                <td class="py-3 text-right"><button class="text-primary-700 hover:underline">Download PDF</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tab 4: Timeline / Notes -->
+        <div data-panel="timeline" class="hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-soft space-y-6">
+          <h3 class="text-base font-bold text-ink">Activity Log &amp; Case Notes</h3>
+          <div class="space-y-4">
+            <div class="flex gap-4 text-xs">
+              <span class="font-mono text-slate-400 shrink-0">05 Oct, 03:30 PM</span>
+              <div>
+                <p class="font-bold text-ink">Tashir Biometric Slot Attended</p>
+                <p class="text-slate-600">Applicant attended appointment in Jamuna Future Park. Fingerprints accepted without query.</p>
+                <p class="text-[11px] text-slate-400 mt-0.5">By: Rahim Khan</p>
+              </div>
+            </div>
+            <div class="flex gap-4 text-xs">
+              <span class="font-mono text-slate-400 shrink-0">19 Sep, 04:15 PM</span>
+              <div>
+                <p class="font-bold text-ink">Status Changed to Medical Fit</p>
+                <p class="text-slate-600">GAMCA online slip uploaded.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100">
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Add Internal Staff Note</label>
+            <div class="flex gap-2">
+              <input type="text" placeholder="Note text..." class="flex-1 rounded-xl border-slate-200 bg-slate-50 text-xs">
+              <button class="rounded-xl bg-slate-800 px-4 text-xs font-bold text-white hover:bg-black">Add Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: Communication -->
+        <div data-panel="communication" class="hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-soft space-y-4">
+          <h3 class="text-base font-bold text-ink">Direct Client Dispatch Logs</h3>
+          <p class="text-xs text-slate-500">Automated SMS and WhatsApp notifications sent to applicant's phone (01712345678).</p>
+          <div class="space-y-2 text-xs">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+              <div class="flex justify-between text-slate-400 mb-1"><span>SMS · Sent via Banglalink Gateway</span><span>19 Sep 2026, 04:16 PM</span></div>
+              <p class="text-slate-700">“Dear Md Kamrul Hasan, your medical report is FIT. Tracking code TA-2026-0084 updated. - Al-Safar Travels”</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="../assets/js/admin-layout.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

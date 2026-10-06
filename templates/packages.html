@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>প্যাকেজসমূহ — আল-সফর ট্রাভেলস</title>
+  <meta name="description" content="হজ্জ, উমরাহ এবং আন্তর্জাতিক ভ্রমণ প্যাকেজ। বিশ্বস্ত সেবা ও স্বচ্ছ মূল্য তালিকা।">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script src="assets/js/tailwind.config.js"></script>
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="packages" class="bg-surface font-sans text-ink antialiased">
+<div data-layout="header"></div>
+
+<main id="main">
+  <!-- Page Header -->
+  <section class="relative bg-navy-900 py-16 text-white overflow-hidden">
+    <div class="pattern-geo absolute inset-0 opacity-20"></div>
+    <div class="container relative z-10">
+      <nav class="flex items-center gap-2 text-sm text-navy-200" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-white">হোম</a>
+        <i data-lucide="chevron-right" class="h-4 w-4"></i>
+        <span class="text-white font-medium">প্যাকেজসমূহ</span>
+      </nav>
+      <h1 class="mt-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">আমাদের ভ্রমণ ও হজ্জ-উমরাহ প্যাকেজ</h1>
+      <p class="mt-3 max-w-2xl text-navy-100">অভিজ্ঞ মুয়াল্লিম, মানসম্মত হোটেল ও বিশ্বস্ত গাইডের সমন্বয়ে প্রস্তুতকৃত সেরা প্যাকেজসমূহ।</p>
+    </div>
+  </section>
+
+  <!-- Filter & Catalog Section -->
+  <section class="py-12">
+    <div class="container">
+      <!-- Filter Bar -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-soft sm:p-6 mb-10">
+        <div class="grid gap-4 md:grid-cols-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">ক্যাটাগরি</label>
+            <select class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500 focus:ring-primary-200">
+              <option value="">সকল ক্যাটাগরি</option>
+              <option value="hajj">হজ্জ প্যাকেজ</option>
+              <option value="umrah">উমরাহ প্যাকেজ</option>
+              <option value="tour">ইন্টারন্যাশনাল ট্যুর</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">বাজেট রেঞ্জ</label>
+            <select class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500 focus:ring-primary-200">
+              <option value="">যেকোনো বাজেট</option>
+              <option value="1">৳ ১,০০,০০০ - ৳ ২,০০,০০০</option>
+              <option value="2">৳ ২,০০,০০০ - ৳ ৪,০০,০০০</option>
+              <option value="3">৳ ৪,০০,০০০ এর বেশি</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">সময়কাল</label>
+            <select class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500 focus:ring-primary-200">
+              <option value="">যেকোনো সময়কাল</option>
+              <option value="short">৭-১৪ দিন</option>
+              <option value="mid">১৫-২১ দিন</option>
+              <option value="long">৩০-৪০ দিন</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">সাজানো</label>
+            <select class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500 focus:ring-primary-200">
+              <option value="popular">জনপ্রিয়তা অনুযায়ী</option>
+              <option value="price_asc">মূল্য: কম থেকে বেশি</option>
+              <option value="price_desc">মূল্য: বেশি থেকে কম</option>
+              <option value="departure">আসন্ন যাত্রা অনুযায়ী</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Packages Grid -->
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Package Card 1 -->
+        <article class="lift group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft hover:shadow-lift flex flex-col">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="assets/img/hero-makkah.jpg" alt="হজ্জ প্যাকেজ ২০২৭" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+            <span class="absolute left-3 top-3 rounded-full bg-primary-700 px-3 py-1 text-xs font-semibold text-white shadow">হজ্জ</span>
+            <span class="absolute right-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-danger backdrop-blur">৮টি সিট বাকি</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h2 class="text-xl font-bold leading-snug group-hover:text-primary-700">হজ্জ প্যাকেজ ২০২৭ — স্ট্যান্ডার্ড ইকোনমি</h2>
+            <p class="mt-2 text-sm text-slate-600 line-clamp-2">ধর্ম মন্ত্রণালয় অনুমোদিত, অভিজ্ঞ মুয়াল্লিমের তত্ত্বাবধানে সম্পূর্ণ শরীয়াহ সম্মত হজ্জ কাফেলা।</p>
+            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-slate-600">
+              <li class="flex items-center gap-1.5"><i data-lucide="calendar" class="h-4 w-4 text-primary-600"></i>৪০ দিন</li>
+              <li class="flex items-center gap-1.5"><i data-lucide="building" class="h-4 w-4 text-primary-600"></i>হারাম থেকে ৫০০মি</li>
+              <li class="flex items-center gap-1.5"><i data-lucide="plane" class="h-4 w-4 text-primary-600"></i>সৌদিয়া এয়ারলাইন্স</li>
+              <li class="flex items-center gap-1.5"><i data-lucide="utensils" class="h-4 w-4 text-primary-600"></i>৩ বেলা দেশীয় খাবার</li>
+            </ul>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+              <div>
+                <p class="text-xs text-slate-500">শুরু মাত্র</p>
+                <p class="text-xl font-bold text-primary-800">৳ ৬,৯৫,০০০</p>
+              </div>
+              <a href="package-detail.html" class="inline-flex items-center gap-1.5 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-800">
+                বিস্তারিত <i data-lucide="arrow-right" class="h-4 w-4"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Package Card 2 -->
+        <article class="lift group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft hover:shadow-lift flex flex-col">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="assets/img/madinah.jpg" alt="উমরাহ প্যাকেজ" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+            <span class="absolute left-3 top-3 rounded-full bg-primary-700 px-3 py-1 text-xs font-semibold text-white shadow">উমরাহ</span>
+            <span class="absolute right-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary-700 backdrop-blur">নভেম্বর গ্রুপ</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h2 class="text-xl font-bold leading-snug group-hover:text-primary-700">উমরাহ প্যাকেজ — ১৪ দিনের গোল্ডেন প্যাকেজ</h2>
+            <p class="mt-2 text-sm text-slate-600 line-clamp-2">মক্কা ও মদিনায় ৩-তারকা হোটেলের সুব্যবস্থা, ঐতিহাসিক স্থান পরিদর্শন (জিয়ারত) সহ।</p>
+            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-slate-600">
+              <li class="flex items-center gap-1.5"><i data-lucide="calendar" class="h-4 w-4 text-primary-600"></i>১৪ দিন / ১৩ রাত</li>
+              <li class="flex items-center gap-1.5"><i data-lucide="building" class="h-4 w-4 text-primary-600"></i>হারাম থেকে ৩৫০মি</li>
+              <li class="flex items-center gap-1.5"><i data-lucide="plane" class="h-4 w-4 text-primary-600"></i>বিমান বাংলাদেশ</li>
+              <li class="flex items-center gap-1.5"><i data-lucide="bus" class="h-4 w-4 text-primary-600"></i>ভিআইপি বাস সেবা</li>
+            </ul>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+              <div>
+                <p class="text-xs text-slate-500">শুরু মাত্র</p>
+                <p class="text-xl font-bold text-primary-800">৳ ১,৪৫,০০০</p>
+              </div>
+              <a href="package-detail.html" class="inline-flex items-center gap-1.5 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-800">
+                বিস্তারিত <i data-lucide="arrow-right" class="h-4 w-4"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Package Card 3 -->
+        <article class="lift group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft hover:shadow-lift flex flex-col">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="assets/img/malaysia.jpg" alt="মালয়েশিয়া ভ্রমণ প্যাকেজ" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+            <span class="absolute left-3 top-3 rounded-full bg-navy-700 px-3 py-1 text-xs font-semibold text-white shadow">ট্যুর</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h2 class="text-xl font-bold leading-snug group-hover:text-primary-700">মালয়েশিয়া ও সিঙ্গাপুর সুপার কম্বো ট্যুর</h2>
+            <p class="mt-2 text-sm text-slate-600 line-clamp-2">কুয়ালালামপুর, গেনটিং হাইল্যান্ডস এবং সিঙ্গাপুরের দর্শনীয় স্থানসমূহ ঘুরে দেখার সুবর্ণ সুযোগ।</p>
+            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-slate-600">
+              <li class="flex items-center gap-1.5"><i data-lucide="calendar" class="h-4 w-4 text-primary-600"></i>৬ রাত ৭ দিন</li>
+              <li class="flex items-center gap-1.5"><i data-lucide="building" class="h-4 w-4 text-primary-600"></i>৪ তারকা হোটেল</li>
+              <li class="flex items-center gap-1.5"><i data-lucide="plane" class="h-4 w-4 text-primary-600"></i>রিটার্ন এয়ার টিকেট</li>
+              <li class="flex items-center gap-1.5"><i data-lucide="stamp" class="h-4 w-4 text-primary-600"></i>ই-ভিসা প্রসেসিং</li>
+            </ul>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+              <div>
+                <p class="text-xs text-slate-500">জনপ্রতি মাত্র</p>
+                <p class="text-xl font-bold text-primary-800">৳ ৯৫,০০০</p>
+              </div>
+              <a href="package-detail.html" class="inline-flex items-center gap-1.5 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-800">
+                বিস্তারিত <i data-lucide="arrow-right" class="h-4 w-4"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-12 flex justify-center">
+        <nav class="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-white p-1 shadow-sm" aria-label="Pagination">
+          <button class="grid h-10 w-10 place-items-center rounded-lg text-slate-400 hover:bg-slate-50 disabled:opacity-50" disabled><i data-lucide="chevron-left" class="h-5 w-5"></i></button>
+          <button class="grid h-10 w-10 place-items-center rounded-lg bg-primary-700 font-bold text-white">১</button>
+          <button class="grid h-10 w-10 place-items-center rounded-lg text-slate-600 hover:bg-slate-50">২</button>
+          <button class="grid h-10 w-10 place-items-center rounded-lg text-slate-600 hover:bg-slate-50">৩</button>
+          <button class="grid h-10 w-10 place-items-center rounded-lg text-slate-600 hover:bg-slate-50"><i data-lucide="chevron-right" class="h-5 w-5"></i></button>
+        </nav>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div data-layout="footer"></div>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

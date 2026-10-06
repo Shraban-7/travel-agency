@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Al-Safar Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script src="../assets/js/tailwind.config.js"></script>
+  <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body data-admin-page="dashboard" data-title="Operations Dashboard" class="bg-surface font-sans text-ink antialiased">
+  <div data-layout="admin-sidebar"></div>
+
+  <div class="lg:pl-72 flex flex-col min-h-screen">
+    <div data-layout="admin-topbar"></div>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-8 font-en">
+      <!-- Welcome Header -->
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-ink">Welcome back, Rahim Khan</h2>
+          <p class="text-sm text-slate-500">Here is what is happening across visas, Hajj registrations &amp; manpower pipelines today.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="leads.html" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
+            <i data-lucide="inbox" class="h-4 w-4"></i> View Inquiries (12)
+          </a>
+          <a href="package-form.html" class="inline-flex items-center gap-2 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-semibold text-white shadow-soft hover:bg-primary-800 transition">
+            <i data-lucide="plus" class="h-4 w-4"></i> New Package
+          </a>
+        </div>
+      </div>
+
+      <!-- StatCards (DESIGN.md §6 Admin: StatCard) -->
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- StatCard 1 -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">New Leads</span>
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-primary-50 text-primary-700"><i data-lucide="inbox" class="h-5 w-5"></i></span>
+          </div>
+          <p class="mt-3 text-3xl font-bold text-ink">24</p>
+          <div class="mt-2 flex items-center gap-1.5 text-xs text-success">
+            <i data-lucide="trending-up" class="h-3.5 w-3.5"></i> +18% from last week
+          </div>
+        </div>
+
+        <!-- StatCard 2 -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Active Applications</span>
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-accent-50 text-accent-700"><i data-lucide="folder-kanban" class="h-5 w-5"></i></span>
+          </div>
+          <p class="mt-3 text-3xl font-bold text-ink">142</p>
+          <div class="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
+            <span>38 in Embassy Stamping</span>
+          </div>
+        </div>
+
+        <!-- StatCard 3 -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Upcoming Deadlines</span>
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-red-50 text-danger"><i data-lucide="bell-ring" class="h-5 w-5"></i></span>
+          </div>
+          <p class="mt-3 text-3xl font-bold text-danger">3</p>
+          <div class="mt-2 flex items-center gap-1.5 text-xs text-danger">
+            <i data-lucide="alert-circle" class="h-3.5 w-3.5"></i> Malaysia biometric closes in 2d
+          </div>
+        </div>
+
+        <!-- StatCard 4 -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Revenue (Oct)</span>
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-green-50 text-success"><i data-lucide="wallet" class="h-5 w-5"></i></span>
+          </div>
+          <p class="mt-3 text-3xl font-bold text-ink">৳ 48.5L</p>
+          <div class="mt-2 flex items-center gap-1.5 text-xs text-success">
+            <i data-lucide="check" class="h-3.5 w-3.5"></i> 94% collection rate
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Tables Grid -->
+      <div class="grid gap-8 lg:grid-cols-12 items-start">
+        <!-- Recent Leads Table (DESIGN.md §6 DataTable) -->
+        <div class="lg:col-span-7 rounded-2xl border border-slate-200 bg-white p-6 shadow-soft" data-table>
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-base font-bold text-ink">Recent Inquiries &amp; Leads</h3>
+              <p class="text-xs text-slate-500">Real-time incoming web inquiries requiring agent assignment</p>
+            </div>
+            <a href="leads.html" class="text-xs font-semibold text-primary-700 hover:underline">View All Leads →</a>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <tr>
+                  <th class="pb-3">Client</th>
+                  <th class="pb-3">Service</th>
+                  <th class="pb-3">Status</th>
+                  <th class="pb-3 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr>
+                  <td class="py-3.5">
+                    <p class="font-semibold text-ink">Zahid Hossain</p>
+                    <p class="text-xs text-slate-500">01712348899</p>
+                  </td>
+                  <td class="py-3.5">
+                    <span class="text-xs font-medium text-slate-700">Hajj 2027 Standard</span>
+                  </td>
+                  <td class="py-3.5">
+                    <span class="rounded-full bg-accent/20 px-2.5 py-0.5 text-xs font-bold text-ink">New</span>
+                  </td>
+                  <td class="py-3.5 text-right">
+                    <a href="leads.html" class="rounded-lg bg-slate-100 px-3 py-1 text-xs font-semibold hover:bg-primary-50 hover:text-primary-800">Assign</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-3.5">
+                    <p class="font-semibold text-ink">Md Tariqul Islam</p>
+                    <p class="text-xs text-slate-500">01822998877</p>
+                  </td>
+                  <td class="py-3.5">
+                    <span class="text-xs font-medium text-slate-700">Heavy Driver (Saudi)</span>
+                  </td>
+                  <td class="py-3.5">
+                    <span class="rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-bold text-info">Contacted</span>
+                  </td>
+                  <td class="py-3.5 text-right">
+                    <a href="leads.html" class="rounded-lg bg-slate-100 px-3 py-1 text-xs font-semibold hover:bg-primary-50 hover:text-primary-800">Details</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-3.5">
+                    <p class="font-semibold text-ink">Sharmin Sultana</p>
+                    <p class="text-xs text-slate-500">01911223344</p>
+                  </td>
+                  <td class="py-3.5">
+                    <span class="text-xs font-medium text-slate-700">UK Masters (Jan '27)</span>
+                  </td>
+                  <td class="py-3.5">
+                    <span class="rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-bold text-success">Qualified</span>
+                  </td>
+                  <td class="py-3.5 text-right">
+                    <a href="leads.html" class="rounded-lg bg-slate-100 px-3 py-1 text-xs font-semibold hover:bg-primary-50 hover:text-primary-800">Convert</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Active Applications Mini List -->
+        <div class="lg:col-span-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-base font-bold text-ink">Active Application Pipeline</h3>
+              <p class="text-xs text-slate-500">Recent tracking file status updates</p>
+            </div>
+            <a href="applications.html" class="text-xs font-semibold text-primary-700 hover:underline">All Applications →</a>
+          </div>
+
+          <div class="space-y-3.5">
+            <a href="application-detail.html" class="block p-3.5 rounded-xl border border-slate-100 hover:border-primary-300 hover:bg-slate-50 transition">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-mono text-xs font-bold text-primary-800 bg-primary-50 px-2 py-0.5 rounded">TA-2026-0084</span>
+                <span class="text-xs font-bold text-accent-700">Embassy Stamping</span>
+              </div>
+              <p class="font-bold text-sm text-ink">Md Kamrul Hasan</p>
+              <p class="text-xs text-slate-500">Heavy Driver (Saudi) · Updated 2h ago</p>
+            </a>
+
+            <a href="application-detail.html" class="block p-3.5 rounded-xl border border-slate-100 hover:border-primary-300 hover:bg-slate-50 transition">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-mono text-xs font-bold text-primary-800 bg-primary-50 px-2 py-0.5 rounded">TA-2026-0079</span>
+                <span class="text-xs font-bold text-success">BMET Smart Card Ready</span>
+              </div>
+              <p class="font-bold text-sm text-ink">Abdullah Al Mamun</p>
+              <p class="text-xs text-slate-500">Malaysia Factory · Ready for Flight</p>
+            </a>
+
+            <a href="application-detail.html" class="block p-3.5 rounded-xl border border-slate-100 hover:border-primary-300 hover:bg-slate-50 transition">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-mono text-xs font-bold text-primary-800 bg-primary-50 px-2 py-0.5 rounded">TA-2026-0062</span>
+                <span class="text-xs font-bold text-info">Offer Letter Received</span>
+              </div>
+              <p class="font-bold text-sm text-ink">Anika Tabassum</p>
+              <p class="text-xs text-slate-500">Univ of Leeds (MSc) · Visa filing next</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="../assets/js/admin-layout.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
