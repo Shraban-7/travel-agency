@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title', t($settings['site_name'] ?? 'আল-সফর ট্রাভেলস') . ' — হজ্জ, উমরাহ, বিদেশে চাকরি ও উচ্চশিক্ষা')</title>
-  <meta name="description" content="@yield('meta_description', 'সরকার অনুমোদিত হজ্জ ও রিক্রুটিং এজেন্সি। হজ্জ-উমরাহ প্যাকেজ, ভিসা প্রসেসিং, বিদেশে চাকরি ও উচ্চশিক্ষায় বিশ্বস্ত সেবা — ঢাকা ও চট্টগ্রাম।')">
+  <title>@yield('title', t($settings['seo_title'] ?? $settings['site_name'] ?? 'ট্রাভেল এজেন্সি'))</title>
+  <meta name="description" content="@yield('meta_description', t($settings['seo_description'] ?? ''))">
   <link rel="alternate" hreflang="bn" href="{{ url('/') }}">
   <link rel="alternate" hreflang="en" href="{{ url('/en') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
 </head>
 @php
   $activePage = $activePage ?? (trim($__env->yieldContent('activePage')) ?: 'home');
-  $siteName   = t($settings['site_name'] ?? 'আল-সফর ট্রাভেলস');
+  $siteName   = t($settings['site_name'] ?? 'আস্থা ট্রাভেল এজেন্সি');
   $phone      = $settings['phone'] ?? '+8801700000000';
   $phoneLabel = $settings['phone_label'] ?? bn_digits($phone);
   $waRaw      = $settings['whatsapp'] ?? $phone;
