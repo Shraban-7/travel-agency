@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             JobCategorySeeder::class,
             AdminUserSeeder::class,
             DemoSeeder::class,
+            ContentSeeder::class,
         ]);
     }
 }
