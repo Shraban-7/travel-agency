@@ -27,7 +27,7 @@
   <div class="rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-semibold text-green-800">{{ session('success') }}</div>
 @endif
 
-<form method="POST" action="{{ $package->exists ? route('admin.packages.update', $package) : route('admin.packages.store') }}" class="grid lg:grid-cols-12 gap-8 items-start">
+<form method="POST" action="{{ $package->exists ? route('admin.packages.update', $package) : route('admin.packages.store') }}" enctype="multipart/form-data" class="grid lg:grid-cols-12 gap-8 items-start">
   @csrf
   @if ($package->exists) @method('PUT') @endif
 
@@ -62,6 +62,41 @@
           <textarea name="description_en" rows="5" class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500 focus:bg-white">{{ old('description_en', is_array($package->description) ? ($package->description['en'] ?? '') : '') }}</textarea>
         </div>
       </div>
+    </div>
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft space-y-4">
+      <h3 class="text-base font-bold text-ink pb-4 border-b border-slate-100">Media Library (cover &amp; gallery)</h3>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Cover (single — replaces existing)</label>
+          <input type="file" name="cover" accept="image/jpeg,image/png,image/webp" class="w-full text-xs text-slate-600">
+          @if ($package->exists && $package->getFirstMediaUrl('cover'))
+            <img src="{{ $package->getFirstMediaUrl('cover', 'thumb') }}" alt="Cover" class="mt-2 h-20 w-auto rounded-lg border border-slate-200 object-cover">
+          @endif
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Gallery (multiple — appended)</label>
+          <input type="file" name="gallery[]" multiple accept="image/jpeg,image/png,image/webp" class="w-full text-xs text-slate-600">
+        </div>
+      </div>
+      @if ($package->exists && $package->getMedia('gallery')->isNotEmpty())
+        <div>
+          <p class="text-xs font-semibold text-slate-700 mb-2">Gallery ({{ $package->getMedia('gallery')->count() }})</p>
+          <div class="flex flex-wrap gap-3">
+            @foreach ($package->getMedia('gallery') as $image)
+              <div class="relative">
+                <img src="{{ $image->getUrl('thumb') }}" alt="Gallery image" class="h-20 w-28 rounded-lg border border-slate-200 object-cover">
+                <form method="POST" action="{{ route('admin.packages.media.destroy', [$package, $image]) }}" onsubmit="return confirm('Delete this image?')">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-red-600 text-white hover:bg-red-700" aria-label="Delete image"><i data-lucide="x" class="h-3 w-3"></i></button>
+                </form>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      @endif
+      <p class="text-[11px] text-slate-400">JPG, PNG or WebP up to 5MB each. Existing <span class="font-mono">cover_image</span> data is left untouched.</p>
     </div>
 
     @if ($package->exists && $package->departures->isNotEmpty())

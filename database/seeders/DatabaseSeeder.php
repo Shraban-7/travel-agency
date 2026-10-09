@@ -17,8 +17,10 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             JobCategorySeeder::class,
             AdminUserSeeder::class,
+            RolesAndPermissionsSeeder::class,
             DemoSeeder::class,
             ContentSeeder::class,
+            DemoCustomerSeeder::class,
         ]);
     }
 }

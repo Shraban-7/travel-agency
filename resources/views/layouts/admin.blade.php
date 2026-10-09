@@ -50,13 +50,17 @@
       <div>
         <p class="px-3 pb-2 text-[11px] font-semibold uppercase tracking-wider text-navy-400">CRM</p>
         <ul class="space-y-0.5">
+          @can('leads.view')
           <li><a href="{{ $link('admin.leads.index', '/admin/leads') }}" class="{{ $item('leads', '') }}" @if($adminPage === 'leads') aria-current="page" @endif>
             <i data-lucide="inbox" class="{{ $icon('leads') }}"></i><span class="flex-1">Leads / Inquiries</span>
             @if(!empty($newLeadsCount))<span class="rounded-full bg-accent px-2 py-0.5 text-[11px] font-bold text-ink">{{ $newLeadsCount }}</span>@endif
           </a></li>
+          @endcan
+          @can('applications.view')
           <li><a href="{{ $link('admin.applications.index', '/admin/applications') }}" class="{{ $item('applications', '') }}" @if($adminPage === 'applications') aria-current="page" @endif>
             <i data-lucide="folder-kanban" class="{{ $icon('applications') }}"></i><span class="flex-1">Applications</span>
           </a></li>
+          @endcan
           <li><a href="{{ $link('admin.clients.index', '/admin/clients') }}" class="{{ $item('clients', '') }}" @if($adminPage === 'clients') aria-current="page" @endif>
             <i data-lucide="users" class="{{ $icon('clients') }}"></i><span class="flex-1">Clients</span>
           </a></li>
@@ -68,9 +72,11 @@
       <div>
         <p class="px-3 pb-2 text-[11px] font-semibold uppercase tracking-wider text-navy-400">Content</p>
         <ul class="space-y-0.5">
+          @can('packages.view')
           <li><a href="{{ $link('admin.packages.index', '/admin/packages') }}" class="{{ $item('packages', '') }}" @if($adminPage === 'packages') aria-current="page" @endif>
             <i data-lucide="package" class="{{ $icon('packages') }}"></i><span class="flex-1">Packages</span>
           </a></li>
+          @endcan
           <li><a href="{{ $link('admin.jobs.index', '/admin/jobs') }}" class="{{ $item('jobs', '') }}" @if($adminPage === 'jobs') aria-current="page" @endif>
             <i data-lucide="briefcase" class="{{ $icon('jobs') }}"></i><span class="flex-1">Job Demands</span>
           </a></li>
@@ -91,15 +97,19 @@
       <div>
         <p class="px-3 pb-2 text-[11px] font-semibold uppercase tracking-wider text-navy-400">System</p>
         <ul class="space-y-0.5">
+          @can('users.manage')
           <li><a href="{{ $link('admin.users.index', '/admin/users') }}" class="{{ $item('users', '') }}" @if($adminPage === 'users') aria-current="page" @endif>
             <i data-lucide="shield-check" class="{{ $icon('users') }}"></i><span class="flex-1">Users &amp; Roles</span>
           </a></li>
+          @endcan
           <li><a href="{{ $link('admin.activity.index', '/admin/activity') }}" class="{{ $item('activity', '') }}" @if($adminPage === 'activity') aria-current="page" @endif>
             <i data-lucide="history" class="{{ $icon('activity') }}"></i><span class="flex-1">Activity Log</span>
           </a></li>
+          @can('settings.manage')
           <li><a href="{{ $link('admin.settings.index', '/admin/settings') }}" class="{{ $item('settings', '') }}" @if($adminPage === 'settings') aria-current="page" @endif>
             <i data-lucide="settings" class="{{ $icon('settings') }}"></i><span class="flex-1">Settings</span>
           </a></li>
+          @endcan
         </ul>
       </div>
     </nav>

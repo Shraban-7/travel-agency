@@ -47,6 +47,7 @@
       </div>
       <div class="flex items-center gap-4">
         <a href="{{ route('track') }}" class="inline-flex items-center gap-1.5 font-medium text-accent-300 hover:text-accent-200"><i data-lucide="search-check" class="h-3.5 w-3.5"></i>আবেদন ট্র্যাক করুন</a>
+        <a href="{{ route('admin.login') }}" class="inline-flex items-center gap-1.5 hover:text-white"><i data-lucide="lock" class="h-3.5 w-3.5"></i>স্টাফ লগইন</a>
         <span class="h-4 w-px bg-white/20"></span>
         <div class="inline-flex rounded-md bg-white/10 p-0.5" role="group" aria-label="ভাষা নির্বাচন">
           <button type="button" data-lang="bn" class="rounded px-2 py-0.5 font-medium">বাং</button>
@@ -204,6 +205,7 @@
           <li><a class="hover:text-accent-300" href="{{ route('track') }}">আবেদন ট্র্যাক</a></li>
           <li><a class="hover:text-accent-300" href="{{ route('about') }}">আমাদের সম্পর্কে</a></li>
           <li><a class="hover:text-accent-300" href="{{ route('contact') }}">যোগাযোগ</a></li>
+          <li><a class="hover:text-accent-300" href="{{ route('admin.login') }}">স্টাফ লগইন</a></li>
         </ul>
       </div>
       <div class="lg:col-span-2">

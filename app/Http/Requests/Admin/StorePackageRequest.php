@@ -31,6 +31,9 @@ class StorePackageRequest extends FormRequest
             'sort_order' => ['nullable', 'integer'],
             'countries' => ['nullable', 'array'],
             'countries.*' => ['exists:countries,id'],
+            'cover' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'gallery' => ['nullable', 'array', 'max:20'],
+            'gallery.*' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
         ];
     }
 

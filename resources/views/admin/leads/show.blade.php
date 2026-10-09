@@ -47,6 +47,7 @@
         @endforelse
       </div>
 
+      @can('leads.manage')
       <form method="POST" action="{{ route('admin.leads.note', $lead) }}" class="mt-4">
         @csrf
         <label class="block text-xs font-semibold text-slate-700 mb-1.5">Add Staff Note</label>
@@ -55,6 +56,7 @@
           <button class="rounded-xl bg-slate-800 px-4 text-xs font-bold text-white hover:bg-black">Add Note</button>
         </div>
       </form>
+      @endcan
     </div>
   </div>
 
@@ -65,6 +67,7 @@
       <p><span class="font-semibold text-slate-700">Created:</span> {{ $lead->created_at?->format('d M Y, h:i A') }}</p>
       @if ($lead->lost_reason)<p><span class="font-semibold text-slate-700">Lost reason:</span> {{ $lead->lost_reason }}</p>@endif
     </div>
+    @can('leads.manage')
     <form method="POST" action="{{ route('admin.leads.status', $lead) }}" class="space-y-3">
       @csrf
       @method('PATCH')
@@ -78,6 +81,7 @@
       </div>
       <button class="w-full rounded-xl bg-primary-700 px-4 py-2 text-xs font-bold text-white hover:bg-primary-800">Update Status</button>
     </form>
+    @endcan
   </div>
 </div>
 @endsection

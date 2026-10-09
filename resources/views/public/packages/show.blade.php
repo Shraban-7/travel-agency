@@ -28,15 +28,23 @@
       </div>
     </div>
 
+    @php
+      $coverUrl = $package->getFirstMediaUrl('cover', 'card') ?: ($package->cover_image ? asset('storage/'.$package->cover_image) : asset('assets/img/hero-makkah.jpg'));
+      $galleryMedia = $package->getMedia('gallery');
+    @endphp
     <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-10">
       <div class="md:col-span-2 md:row-span-2 overflow-hidden rounded-2xl">
-        <img src="{{ $package->cover_image ? asset('storage/'.$package->cover_image) : asset('assets/img/hero-makkah.jpg') }}" alt="{{ t($package->title) }}" class="h-full w-full object-cover min-h-[320px]">
+        <img src="{{ $coverUrl }}" alt="{{ t($package->title) }}" class="h-full w-full object-cover min-h-[320px]">
       </div>
-      @forelse($package->media->take(4) as $m)
-        <div class="overflow-hidden rounded-2xl"><img src="{{ asset('storage/'.$m->path) }}" alt="{{ t($package->title) }}" loading="lazy" class="h-48 w-full object-cover"></div>
+      @forelse($galleryMedia->take(4) as $m)
+        <div class="overflow-hidden rounded-2xl"><img src="{{ $m->getUrl('card') }}" alt="{{ t($package->title) }}" loading="lazy" class="h-48 w-full object-cover"></div>
       @empty
-        <div class="overflow-hidden rounded-2xl"><img src="{{ asset('assets/img/madinah.jpg') }}" alt="প্যাকেজ ছবি" loading="lazy" class="h-48 w-full object-cover"></div>
-        <div class="overflow-hidden rounded-2xl"><img src="{{ asset('assets/img/malaysia.jpg') }}" alt="প্যাকেজ ছবি" loading="lazy" class="h-48 w-full object-cover"></div>
+        @forelse($package->legacyMedia->take(4) as $m)
+          <div class="overflow-hidden rounded-2xl"><img src="{{ asset('storage/'.$m->path) }}" alt="{{ t($package->title) }}" loading="lazy" class="h-48 w-full object-cover"></div>
+        @empty
+          <div class="overflow-hidden rounded-2xl"><img src="{{ asset('assets/img/madinah.jpg') }}" alt="প্যাকেজ ছবি" loading="lazy" class="h-48 w-full object-cover"></div>
+          <div class="overflow-hidden rounded-2xl"><img src="{{ asset('assets/img/malaysia.jpg') }}" alt="প্যাকেজ ছবি" loading="lazy" class="h-48 w-full object-cover"></div>
+        @endforelse
       @endforelse
     </div>
 

@@ -102,6 +102,7 @@
         </tbody>
       </table>
 
+      @can('applications.manage')
       <form method="POST" action="{{ route('admin.applications.payment', $application) }}" class="pt-4 border-t border-slate-100 grid sm:grid-cols-2 gap-3 text-sm">
         @csrf
         <div><label class="block text-xs font-semibold text-slate-700 mb-1">Amount (BDT) *</label><input type="number" name="amount" min="1" step="0.01" required value="{{ old('amount') }}" class="w-full rounded-xl border-slate-200 bg-slate-50"></div>
@@ -111,6 +112,7 @@
         <div class="sm:col-span-2"><label class="block text-xs font-semibold text-slate-700 mb-1">Note</label><input type="text" name="note" value="{{ old('note') }}" class="w-full rounded-xl border-slate-200 bg-slate-50"></div>
         <div class="sm:col-span-2"><button class="rounded-xl bg-primary-700 px-4 py-2 text-xs font-bold text-white hover:bg-primary-800">Record Payment</button></div>
       </form>
+      @endcan
     </div>
 
     <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft space-y-4">
@@ -134,6 +136,7 @@
 
   <div class="lg:col-span-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-soft space-y-4">
     <h3 class="text-base font-bold text-ink pb-3 border-b border-slate-100">Update Status</h3>
+    @can('applications.manage')
     <form method="POST" action="{{ route('admin.applications.status', $application) }}" class="space-y-3 text-sm">
       @csrf
       @method('PATCH')
@@ -155,6 +158,7 @@
       </label>
       <button class="w-full rounded-xl bg-primary-700 px-4 py-2 text-xs font-bold text-white hover:bg-primary-800">Update Status</button>
     </form>
+    @endcan
   </div>
 </div>
 @endsection

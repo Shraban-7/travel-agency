@@ -56,6 +56,12 @@ class ApplicationController extends Controller
             'closed_at' => in_array($data['to_status'], ['completed', 'cancelled', 'rejected']) ? now() : null,
         ]);
 
+        activity()
+            ->performedOn($application)
+            ->causedBy(auth()->user())
+            ->withProperties(['from' => $application->getOriginal('status'), 'to' => $data['to_status']])
+            ->log('Application status changed to '.$data['to_status']);
+
         return back()->with('success', __('Application status updated.'));
     }
 
@@ -68,7 +74,7 @@ class ApplicationController extends Controller
         $next = $last ? ((int) substr($last->receipt_no, -6)) + 1 : 1;
         $receiptNo = sprintf('R-%s-%06d', $year, $next);
 
-        $application->payments()->create([
+        $payment = $application->payments()->create([
             'client_id' => $application->client_id,
             'amount' => $data['amount'],
             'method' => $data['method'],
@@ -79,6 +85,12 @@ class ApplicationController extends Controller
             'received_by' => auth()->id(),
             'note' => $data['note'] ?? null,
         ]);
+
+        activity()
+            ->performedOn($application)
+            ->causedBy(auth()->user())
+            ->withProperties(['receipt_no' => $receiptNo, 'amount' => $data['amount'], 'method' => $data['method'], 'payment_id' => $payment->id])
+            ->log('Payment recorded: '.$receiptNo);
 
         $paidSum = (float) $application->payments()->sum('amount');
         $application->update([

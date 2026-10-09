@@ -1,66 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# আস্থা ট্রাভেল এজেন্সি (Astha Travel Agency)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Bilingual (Bangla default, English) website + admin panel for a Bangladeshi travel /
+manpower / education / Hajj agency: Hajj & Umrah, foreign employment, study abroad,
+tour packages, visa & ticketing.
 
-## About Laravel
+## Stack
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+| Layer    | Choice                              |
+|----------|-------------------------------------|
+| Backend  | Laravel 11 (PHP 8.2+)               |
+| Frontend | Blade + Tailwind CSS (CDN) + vanilla JS + Lucide icons |
+| Database | MySQL 8 (`utf8mb4_unicode_ci`)      |
+| Auth     | Laravel session auth (staff only)   |
+| Tests    | PHPUnit feature tests               |
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Public site** (`/`): home (hero + quick inquiry, trust strip, services, featured
+packages, job demands, study, deadlines, testimonials, FAQ, contact), packages list/detail
+(filters, departures, seats left, related), jobs list/detail, study list/university detail,
+services, deadlines board (notices + job deadlines + departure booking deadlines),
+about, contact, application tracking (phone + tracking code → public timeline only).
 
-## Learning Laravel
+**Admin panel** (`/admin`): dashboard (counts, dues, follow-ups, recent leads/applications),
+leads (search/filter, status pipeline, internal notes, soft delete only), applications
+(status change with public/private logs, document list, payments with `R-YYYY-000001`
+receipts + automatic paid/due recalculation), packages CRUD (slug auto-generated,
+country sync, publish toggle, media library uploads), staff management with roles,
+activity log viewer.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**RBAC**: roles `admin` / `manager` / `staff` with 10 granular permissions
+(`packages.manage`, `leads.manage`, `applications.manage`, `users.manage`, …) enforced on
+every admin route and in the UI via `@can`.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Customer portal** (`/account`): applicants register/login with phone + password to view
+their applications, payment history, dues, document verification status and schedules.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Media, activity, backups**: spatie media-library (package/post covers + galleries with
+thumbnails), activitylog (model changes + key admin actions, `clients.view_sensitive`
+excludes credentials), daily `backup:run` at 02:00 (needs `mysqldump` on PATH).
 
-## Laravel Sponsors
+**Forms → Leads**: quick inquiry + contact forms create `Lead` records (phone normalized
+to `+880…`, Bengali digits supported, throttled 10/min).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Project structure
 
-### Premium Partners
+```
+app/Helpers/helpers.php      # t(), bn_digits(), money(), currency(), maskString(),
+                             # upload_file(), storage_url(), apiResponse()...
+app/Http/Controllers/Public/ # Home, Package, Job, Study, Service, Deadline,
+                             # Page (about/contact), Track, Inquiry
+app/Http/Controllers/Admin/  # Auth, Dashboard, Lead, Application, Package
+app/Http/Requests/Admin/     # StorePackage, ChangeApplicationStatus, StoreLeadNote, StorePayment
+app/Models/                  # 31 models (translatable JSON casts, SoftDeletes
+                             # on leads/applications/payments/packages/posts/...)
+bootstrap/app.php            # guests redirect to admin.login
+database/migrations/         # 35 migrations, FK-safe timestamp order
+database/seeders/            # Settings, Service, Country, JobCategory,
+                             # AdminUser, Demo, Content
+resources/views/layouts/     # public, admin, auth
+resources/views/public/      # 13 pages   resources/views/admin/  # 8 pages
+routes/web.php               # public routes + admin group
+tests/Feature/SiteTest.php   # 5 tests / 23 assertions
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Getting started
 
-## Contributing
+```bash
+cp .env.example .env
+# set DB_* to your MySQL 8 database (utf8mb4_unicode_ci)
+php artisan key:generate
+php artisan migrate:fresh --seed
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Seeded demo logins (password: `password`):
 
-## Code of Conduct
+| Email                    | Use        |
+|--------------------------|------------|
+| `admin@travelagency.test` | Admin panel |
+| `staff@travelagency.test`  | Admin panel |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Public site: `http://127.0.0.1:8000` · Admin: `http://127.0.0.1:8000/admin/login`
 
-## Security Vulnerabilities
+## Key conventions
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Translatable DB content is JSON (`{"bn": "...", "en": "..."}`); render with `t($value)`.
+- Money is `decimal(12,2)` BDT; display with `money($amount)` (prefix `৳`).
+- Sensitive fields (`nid_no`, `passport_no`) use `encrypted` casts and are masked in UI
+  (`maskString()`); applicant documents live on the **private** disk, served only through
+  authorized controllers — never in public props or logs.
+- Statuses are plain strings (`new/contacted/qualified/converted/lost`,
+  `submitted/.../closed`, `open/closed`); every application status change writes an
+  `application_status_logs` row (`public_visible` flag controls the Track page).
+- Tracking codes look like `TA-2026-XXXXXX`; payment receipts like `R-2026-000001`.
+- No hard deletes of applications/payments (soft deletes + activity trail).
 
-## License
+## Commands
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan test                    # run test suite (10 tests)
+php artisan migrate:fresh --seed    # rebuild demo database
+php artisan db:seed --class=ContentSeeder   # content only
+./vendor/bin/pint                   # code style
+```

@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\Package;
 use App\Models\Service;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class PackageController extends Controller
 {
@@ -41,6 +42,8 @@ class PackageController extends Controller
             $package->countries()->sync($data['countries']);
         }
 
+        $this->syncMedia($request, $package);
+
         return redirect()->route('admin.packages.edit', $package)->with('success', __('Package created.'));
     }
 
@@ -67,12 +70,20 @@ class PackageController extends Controller
             $package->countries()->sync($data['countries'] ?? []);
         }
 
+        $this->syncMedia($request, $package);
+
         return back()->with('success', __('Package updated.'));
     }
 
     public function togglePublish(Package $package)
     {
         $package->update(['is_published' => ! $package->is_published]);
+
+        activity()
+            ->performedOn($package)
+            ->causedBy(auth()->user())
+            ->withProperties(['is_published' => $package->is_published])
+            ->log($package->is_published ? 'Package published' : 'Package unpublished');
 
         return back()->with('success', $package->is_published ? __('Package published.') : __('Package unpublished.'));
     }
@@ -82,6 +93,30 @@ class PackageController extends Controller
         $package->delete();
 
         return redirect()->route('admin.packages.index')->with('success', __('Package deleted.'));
+    }
+
+    public function destroyMedia(Package $package, Media $media)
+    {
+        if ($media->model_type !== Package::class || (int) $media->model_id !== (int) $package->id) {
+            abort(404);
+        }
+
+        $media->delete();
+
+        return back()->with('success', __('Image deleted.'));
+    }
+
+    protected function syncMedia(StorePackageRequest $request, Package $package): void
+    {
+        if ($request->hasFile('cover')) {
+            $package->addMediaFromRequest('cover')->toMediaCollection('cover');
+        }
+
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $file) {
+                $package->addMedia($file)->toMediaCollection('gallery');
+            }
+        }
     }
 
     protected function mapPackageData(array $data): array

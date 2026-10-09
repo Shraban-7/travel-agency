@@ -8,9 +8,11 @@
     <h2 class="text-2xl font-bold text-ink">Travel Packages</h2>
     <p class="text-sm text-slate-500">Manage packages with departures, pricing &amp; publishing.</p>
   </div>
+  @can('packages.manage')
   <a href="{{ route('admin.packages.create') }}" class="inline-flex items-center gap-2 rounded-xl bg-primary-700 px-4 py-2.5 text-sm font-semibold text-white shadow-soft hover:bg-primary-800 transition">
     <i data-lucide="plus" class="h-4 w-4"></i> New Package
   </a>
+  @endcan
 </div>
 
 @if (session('success'))
@@ -49,6 +51,7 @@
             </td>
             <td class="py-3 px-3 text-right">
               <div class="inline-flex items-center gap-2">
+                @can('packages.manage')
                 <a href="{{ route('admin.packages.edit', $package) }}" class="rounded-lg bg-primary-50 px-3 py-1 text-xs font-bold text-primary-800 hover:bg-primary-700 hover:text-white transition">Edit</a>
                 <form method="POST" action="{{ route('admin.packages.publish', $package) }}" class="inline">
                   @csrf
@@ -60,11 +63,12 @@
                   @method('DELETE')
                   <button class="rounded-lg bg-red-50 px-3 py-1 text-xs font-bold text-red-700 hover:bg-red-600 hover:text-white transition">Delete</button>
                 </form>
+                @endcan
               </div>
             </td>
           </tr>
         @empty
-          <tr><td colspan="6" class="py-8 text-center text-sm text-slate-500">No packages yet. <a href="{{ route('admin.packages.create') }}" class="font-bold text-primary-700 hover:underline">Create one</a>.</td></tr>
+          <tr><td colspan="6" class="py-8 text-center text-sm text-slate-500">No packages yet. @can('packages.manage')<a href="{{ route('admin.packages.create') }}" class="font-bold text-primary-700 hover:underline">Create one</a>.@endcan</td></tr>
         @endforelse
       </tbody>
     </table>

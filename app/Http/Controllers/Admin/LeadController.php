@@ -40,6 +40,12 @@ class LeadController extends Controller
 
         $lead->update(['status' => $validated['status']]);
 
+        activity()
+            ->performedOn($lead)
+            ->causedBy(auth()->user())
+            ->withProperties(['status' => $validated['status']])
+            ->log('Lead status changed to '.$validated['status']);
+
         return back()->with('success', __('Lead status updated.'));
     }
 
@@ -49,6 +55,12 @@ class LeadController extends Controller
             'user_id' => auth()->id(),
             'note' => $request->validated()['note'],
         ]);
+
+        activity()
+            ->performedOn($lead)
+            ->causedBy(auth()->user())
+            ->withProperties(['note' => $request->validated()['note']])
+            ->log('Note added to lead');
 
         return back()->with('success', __('Note added.'));
     }

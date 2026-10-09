@@ -59,6 +59,7 @@ class PackageController extends Controller
                 'service',
                 'countries',
                 'media',
+                'legacyMedia',
                 'departures' => function ($q) {
                     $q->whereDate('departure_date', '>=', now()->toDateString())
                         ->orderBy('departure_date');
