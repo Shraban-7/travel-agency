@@ -15,6 +15,17 @@ use App\Http\Controllers\Public\ServiceController;
 use App\Http\Controllers\Public\StudyController;
 use App\Http\Controllers\Public\TrackController;
 use Illuminate\Support\Facades\Route;Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/en', function () {
+    session(['locale' => 'en']);
+    return redirect()->route('home', ['lang' => 'en']);
+});
+Route::get('/lang/{locale}', function (string $locale) {
+    if (in_array($locale, ['bn', 'en'], true)) {
+        session(['locale' => $locale]);
+        cookie()->queue(cookie('locale', $locale, 60 * 24 * 365));
+    }
+    return redirect()->back();
+})->name('locale.switch');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {

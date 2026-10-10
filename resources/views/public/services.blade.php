@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'সেবাসমূহ — আল-সফর ট্রাভেলস')
+@section('title', __('services.meta.title'))
 @section('activePage', 'services')
 @section('content')
 <main id="main">
@@ -7,12 +7,12 @@
     <div class="pattern-geo absolute inset-0 opacity-20"></div>
     <div class="container relative z-10">
       <nav class="flex items-center gap-2 text-sm text-navy-200" aria-label="Breadcrumb">
-        <a href="{{ route('home') }}" class="hover:text-white">হোম</a>
+        <a href="{{ route('home') }}" class="hover:text-white">{{ __('common.home') }}</a>
         <i data-lucide="chevron-right" class="h-4 w-4"></i>
-        <span class="text-white font-medium">সেবাসমূহ</span>
+        <span class="text-white font-medium">{{ __('services.breadcrumb.current') }}</span>
       </nav>
-      <h1 class="mt-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">আমাদের সকল সেবা</h1>
-      <p class="mt-3 max-w-2xl text-navy-100">হজ্জ কাফেলা থেকে শুরু করে বিদেশে চাকরি ও শিক্ষার্থী ভর্তি — আমাদের অভিজ্ঞ টিম আপনার প্রতিটি যাত্রায় বিশ্বস্ত সহযাত্রী।</p>
+      <h1 class="mt-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">{{ __('services.hero.title') }}</h1>
+      <p class="mt-3 max-w-2xl text-navy-100">{{ __('services.hero.subtitle') }}</p>
     </div>
   </section>
 
@@ -20,17 +20,17 @@
     @forelse($services as $service)
       <section id="{{ $service->slug }}" class="scroll-mt-24 grid lg:grid-cols-2 gap-10 items-center">
         <div class="{{ $loop->even ? 'order-1 lg:order-2' : '' }}">
-          <span class="inline-flex items-center gap-2 rounded-full bg-primary-100 px-3 py-1 text-xs font-bold text-primary-800 mb-3">{{ t($service->type) ?: 'সেবা' }}</span>
+          <span class="inline-flex items-center gap-2 rounded-full bg-primary-100 px-3 py-1 text-xs font-bold text-primary-800 mb-3">{{ t($service->type) ?: __('common.service') }}</span>
           <h2 class="font-serif text-3xl font-bold text-ink">{{ t($service->title) }}</h2>
           <p class="mt-4 text-slate-600 leading-relaxed">{{ t($service->body) ?: t($service->short_desc) }}</p>
           @if($service->slug === 'hajj' || $service->type === 'hajj')
-            <div class="mt-8"><a href="{{ route('packages.index') }}" class="rounded-xl bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-800 transition">হজ্জ ও উমরাহ প্যাকেজ দেখুন</a></div>
+            <div class="mt-8"><a href="{{ route('packages.index') }}" class="rounded-xl bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-800 transition">{{ __('services.card.view_hajj') }}</a></div>
           @elseif($service->type === 'manpower' || $service->type === 'job')
-            <div class="mt-8"><a href="{{ route('jobs.index') }}" class="rounded-xl bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-800 transition">চলমান জব ডিমান্ড দেখুন</a></div>
+            <div class="mt-8"><a href="{{ route('jobs.index') }}" class="rounded-xl bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-800 transition">{{ __('services.card.view_jobs') }}</a></div>
           @elseif($service->type === 'study')
-            <div class="mt-8"><a href="{{ route('study.index') }}" class="rounded-xl bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-800 transition">বিশ্ববিদ্যালয় ও প্রোগ্রামসমূহ</a></div>
+            <div class="mt-8"><a href="{{ route('study.index') }}" class="rounded-xl bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-800 transition">{{ __('services.card.view_study') }}</a></div>
           @else
-            <div class="mt-8"><a href="{{ route('contact') }}#consult" class="rounded-xl bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-800 transition">পরামর্শের জন্য যোগাযোগ করুন</a></div>
+            <div class="mt-8"><a href="{{ route('contact') }}#consult" class="rounded-xl bg-primary-700 px-5 py-2.5 font-semibold text-white hover:bg-primary-800 transition">{{ __('services.card.contact_cta') }}</a></div>
           @endif
         </div>
         <div class="{{ $loop->even ? 'order-2 lg:order-1' : '' }} overflow-hidden rounded-2xl shadow-soft">
@@ -48,7 +48,7 @@
         </div>
       </section>
     @empty
-      <p class="text-center text-slate-500">সেবার তালিকা শীঘ্রই আসছে।</p>
+      <p class="text-center text-slate-500">{{ __('services.empty.message') }}</p>
     @endforelse
   </div>
 </main>

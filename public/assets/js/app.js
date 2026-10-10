@@ -7,6 +7,8 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const BN = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
   const toBn = (v) => String(v).replace(/\d/g, (d) => BN[d]);
+  const LANG = document.documentElement.lang || 'bn';
+  const num = (v) => (LANG === 'en' ? String(v) : toBn(v));
   const pad = (n) => String(n).padStart(2, '0');
   window.toBn = toBn;
 
@@ -64,14 +66,16 @@
     cds.forEach((el) => {
       const diff = new Date(el.dataset.countdown).getTime() - now;
       const label = $('[data-cd-label]', el) || el;
-      if (diff <= 0) { el.dataset.state = 'expired'; label.textContent = 'সময় শেষ'; return; }
+      if (diff <= 0) { el.dataset.state = 'expired'; label.textContent = LANG === 'en' ? 'Expired' : 'সময় শেষ'; return; }
       const d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24, m = Math.floor(diff / 6e4) % 60, s = Math.floor(diff / 1e3) % 60;
       el.dataset.state = d < 3 ? 'urgent' : d < 10 ? 'soon' : 'ok';
       const units = $$('[data-unit]', el);
       if (units.length) {
-        units.forEach((u) => { u.textContent = toBn(pad({ d, h, m, s }[u.dataset.unit])); });
+        units.forEach((u) => { u.textContent = num(pad({ d, h, m, s }[u.dataset.unit])); });
       } else {
-        label.textContent = d > 0 ? `${toBn(d)} দিন ${toBn(h)} ঘণ্টা বাকি` : `${toBn(pad(h))}:${toBn(pad(m))}:${toBn(pad(s))} বাকি`;
+        label.textContent = d > 0
+          ? (LANG === 'en' ? `${d}d ${h}h left` : `${num(d)} দিন ${num(h)} ঘণ্টা বাকি`)
+          : (LANG === 'en' ? `${pad(h)}:${pad(m)}:${pad(s)} left` : `${num(pad(h))}:${num(pad(m))}:${num(pad(s))} বাকি`);
       }
     });
   };
@@ -81,7 +85,7 @@
   const counters = $$('[data-count-to]');
   const runCounter = (el) => {
     const to = +el.dataset.countTo, dur = 1400, start = performance.now();
-    const fmt = (n) => toBn(n.toLocaleString('en-IN'));
+    const fmt = (n) => num(n.toLocaleString('en-IN'));
     const step = (t) => {
       const p = Math.min(1, (t - start) / dur), e = 1 - Math.pow(1 - p, 3);
       el.textContent = fmt(Math.round(to * e)) + (el.dataset.suffix || '');
@@ -104,7 +108,7 @@
     $$('.reveal, [data-count-to]').forEach((el) => io.observe(el));
   } else {
     $$('.reveal').forEach((el) => el.classList.add('is-visible'));
-    counters.forEach((el) => { el.textContent = toBn((+el.dataset.countTo).toLocaleString('en-IN')) + (el.dataset.suffix || ''); });
+    counters.forEach((el) => { el.textContent = num((+el.dataset.countTo).toLocaleString('en-IN')) + (el.dataset.suffix || ''); });
   }
 
   /* ---------- Carousel (scroll-snap + prev/next) ---------- */
@@ -166,7 +170,7 @@
       const target = form.dataset.demoForm;
       if (target && target.startsWith('#')) { const el = $(target); el?.classList.remove('hidden'); el?.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
       if (target && target.endsWith('.html')) { location.href = target; return; }
-      showToast(form.dataset.success || 'ধন্যবাদ! আমাদের প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবেন।');
+      showToast(form.dataset.success || (LANG === 'en' ? 'Thank you! Our representative will contact you soon.' : 'ধন্যবাদ! আমাদের প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবেন।'));
       form.reset();
     });
   });
@@ -211,8 +215,8 @@
   }));
 
   /* ---------- Misc ---------- */
-  $$('[data-year]').forEach((el) => (el.textContent = toBn(new Date().getFullYear())));
-  $$('[data-copy]').forEach((b) => b.addEventListener('click', () => { navigator.clipboard?.writeText(b.dataset.copy); showToast('কপি হয়েছে: ' + b.dataset.copy, 'info'); }));
+  $$('[data-year]').forEach((el) => (el.textContent = num(new Date().getFullYear())));
+  $$('[data-copy]').forEach((b) => b.addEventListener('click', () => { navigator.clipboard?.writeText(b.dataset.copy); showToast((LANG === 'en' ? 'Copied: ' : 'কপি হয়েছে: ') + b.dataset.copy, 'info'); }));
 
   // Header shadow on scroll
   const hdr = $('[data-sticky-header]');

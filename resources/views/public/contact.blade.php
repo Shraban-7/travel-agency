@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'যোগাযোগ ও অফিস — আল-সফর ট্রাভেলস')
+@section('title', __('contact.meta.title'))
 @section('activePage', 'contact')
 @section('content')
 <main id="main">
@@ -7,12 +7,12 @@
     <div class="pattern-geo absolute inset-0 opacity-20"></div>
     <div class="container relative z-10">
       <nav class="flex items-center gap-2 text-sm text-navy-200" aria-label="Breadcrumb">
-        <a href="{{ route('home') }}" class="hover:text-white">হোম</a>
+        <a href="{{ route('home') }}" class="hover:text-white">{{ __('common.home') }}</a>
         <i data-lucide="chevron-right" class="h-4 w-4"></i>
-        <span class="text-white font-medium">যোগাযোগ</span>
+        <span class="text-white font-medium">{{ __('contact.breadcrumb.current') }}</span>
       </nav>
-      <h1 class="mt-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">আমাদের সাথে যোগাযোগ করুন</h1>
-      <p class="mt-3 max-w-2xl text-navy-100">সরাসরি আমাদের অফিসে চলে আসুন অথবা ফোনে আমাদের এক্সপার্ট কাউন্সেলরদের সাথে পরামর্শ করুন।</p>
+      <h1 class="mt-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">{{ __('contact.hero.title') }}</h1>
+      <p class="mt-3 max-w-2xl text-navy-100">{{ __('contact.hero.subtitle') }}</p>
     </div>
   </section>
 
@@ -23,15 +23,15 @@
           <div class="flex items-center gap-3 mb-4">
             <span class="grid h-12 w-12 place-items-center rounded-xl bg-primary-100 text-primary-800"><i data-lucide="building-2" class="h-6 w-6"></i></span>
             <div>
-              <span class="rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-bold text-primary-700">প্রধান কার্যালয়</span>
-              <h2 class="text-xl font-bold text-ink">ধানমন্ডি অফিস, ঢাকা</h2>
+              <span class="rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-bold text-primary-700">{{ __('contact.office.dhaka_badge') }}</span>
+              <h2 class="text-xl font-bold text-ink">{{ __('contact.office.dhaka_title') }}</h2>
             </div>
           </div>
           <div class="space-y-3 text-sm text-slate-600">
-            <p class="flex items-start gap-2.5"><i data-lucide="map-pin" class="h-4 w-4 text-primary-700 shrink-0 mt-1"></i><span>হাউস ১২, রোড ৫, ধানমন্ডি, ঢাকা-১২০৫ (ল্যাবএইড হাসপাতালের কাছে)</span></p>
+            <p class="flex items-start gap-2.5"><i data-lucide="map-pin" class="h-4 w-4 text-primary-700 shrink-0 mt-1"></i><span>{{ __('contact.office.dhaka_addr') }}</span></p>
             <p class="flex items-center gap-2.5"><i data-lucide="phone" class="h-4 w-4 text-primary-700 shrink-0"></i><a href="tel:+8801700000000" class="font-bold text-primary-800 hover:underline">০১৭০০-০০০০০০, ০২-৯৮৭৬৫৪৩</a></p>
             <p class="flex items-center gap-2.5"><i data-lucide="mail" class="h-4 w-4 text-primary-700 shrink-0"></i><a href="mailto:dhaka@alsafar.com.bd" class="font-en hover:underline">dhaka@alsafar.com.bd</a></p>
-            <p class="flex items-center gap-2.5"><i data-lucide="clock" class="h-4 w-4 text-primary-700 shrink-0"></i><span>শনিবার – বৃহস্পতিবার, সকাল ৯:৩০ – সন্ধ্যা ৭:০০</span></p>
+            <p class="flex items-center gap-2.5"><i data-lucide="clock" class="h-4 w-4 text-primary-700 shrink-0"></i><span>{{ __('contact.office.dhaka_hours') }}</span></p>
           </div>
         </div>
 
@@ -39,15 +39,15 @@
           <div class="flex items-center gap-3 mb-4">
             <span class="grid h-12 w-12 place-items-center rounded-xl bg-navy-100 text-navy-800"><i data-lucide="building-2" class="h-6 w-6"></i></span>
             <div>
-              <span class="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-bold text-navy-700">বিভাগীয় শাখা</span>
-              <h2 class="text-xl font-bold text-ink">আগ্রাবাদ অফিস, চট্টগ্রাম</h2>
+              <span class="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-bold text-navy-700">{{ __('contact.office.ctg_badge') }}</span>
+              <h2 class="text-xl font-bold text-ink">{{ __('contact.office.ctg_title') }}</h2>
             </div>
           </div>
           <div class="space-y-3 text-sm text-slate-600">
-            <p class="flex items-start gap-2.5"><i data-lucide="map-pin" class="h-4 w-4 text-navy-700 shrink-0 mt-1"></i><span>আগ্রাবাদ বাণিজ্যিক এলাকা, হোটেল আগ্রাবাদের বিপরীতে, চট্টগ্রাম-৪১০০</span></p>
+            <p class="flex items-start gap-2.5"><i data-lucide="map-pin" class="h-4 w-4 text-navy-700 shrink-0 mt-1"></i><span>{{ __('contact.office.ctg_addr') }}</span></p>
             <p class="flex items-center gap-2.5"><i data-lucide="phone" class="h-4 w-4 text-navy-700 shrink-0"></i><a href="tel:+8801700000001" class="font-bold text-navy-800 hover:underline">০১৭০০-০০০০০১, ০৩১-৭৬৫৪৩২</a></p>
             <p class="flex items-center gap-2.5"><i data-lucide="mail" class="h-4 w-4 text-navy-700 shrink-0"></i><a href="mailto:ctg@alsafar.com.bd" class="font-en hover:underline">ctg@alsafar.com.bd</a></p>
-            <p class="flex items-center gap-2.5"><i data-lucide="clock" class="h-4 w-4 text-navy-700 shrink-0"></i><span>শনিবার – বৃহস্পতিবার, সকাল ১০:০০ – সন্ধ্যা ৬:৩০</span></p>
+            <p class="flex items-center gap-2.5"><i data-lucide="clock" class="h-4 w-4 text-navy-700 shrink-0"></i><span>{{ __('contact.office.ctg_hours') }}</span></p>
           </div>
         </div>
       </div>
@@ -58,8 +58,8 @@
     <div class="container grid lg:grid-cols-12 gap-10">
       <div class="lg:col-span-7">
         <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft sm:p-8">
-          <h2 class="font-serif text-2xl font-bold text-ink mb-1">পরামর্শ ও ইনকোয়ারি ফর্ম</h2>
-          <p class="text-sm text-slate-500 mb-6">আপনার চাহিদা লিখে পাঠান, আমরা অতি শীঘ্রই যোগাযোগ করব।</p>
+          <h2 class="font-serif text-2xl font-bold text-ink mb-1">{{ __('contact.form.title') }}</h2>
+          <p class="text-sm text-slate-500 mb-6">{{ __('contact.form.subtitle') }}</p>
           @if(session('success'))
             <p class="mb-4 rounded-xl bg-green-50 border border-green-200 p-4 text-sm font-semibold text-success">{{ session('success') }}</p>
           @endif
@@ -68,36 +68,36 @@
             <input type="hidden" name="source" value="contact">
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
-                <label for="c-name" class="block text-xs font-semibold text-slate-700 mb-1">আপনার নাম <span class="text-danger">*</span></label>
+                <label for="c-name" class="block text-xs font-semibold text-slate-700 mb-1">{{ __('contact.form.name') }} <span class="text-danger">*</span></label>
                 <input id="c-name" name="name" type="text" required value="{{ old('name') }}" class="h-12 w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">
                 @error('name')<p class="mt-1 text-sm text-danger">{{ $message }}</p>@enderror
               </div>
               <div>
-                <label for="c-phone" class="block text-xs font-semibold text-slate-700 mb-1">মোবাইল নম্বর <span class="text-danger">*</span></label>
+                <label for="c-phone" class="block text-xs font-semibold text-slate-700 mb-1">{{ __('contact.form.phone') }} <span class="text-danger">*</span></label>
                 <input id="c-phone" name="phone" type="tel" required placeholder="01XXXXXXXXX" value="{{ old('phone') }}" class="h-12 w-full rounded-xl border-slate-200 bg-slate-50 text-sm font-en focus:border-primary-500">
                 @error('phone')<p class="mt-1 text-sm text-danger">{{ $message }}</p>@enderror
               </div>
             </div>
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
-                <label for="c-service" class="block text-xs font-semibold text-slate-700 mb-1">প্রয়োজনীয় সেবা</label>
+                <label for="c-service" class="block text-xs font-semibold text-slate-700 mb-1">{{ __('contact.form.service') }}</label>
                 <select id="c-service" name="service" class="h-12 w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">
-                  @foreach(['হজ্জ প্যাকেজ','উমরাহ প্যাকেজ','বিদেশে চাকরি','বিদেশে উচ্চশিক্ষা','ভিসা প্রসেসিং','এয়ার টিকেট'] as $opt)
+                  @foreach([__('হজ্জ'),__('উমরাহ'),__('ট্যুর প্যাকেজ'),__('ভিসা প্রসেসিং'),__('বিদেশে চাকরি'),__('উচ্চশিক্ষা'),__('এয়ার টিকেট')] as $opt)
                     <option value="{{ $opt }}" @selected(old('service') === $opt)>{{ $opt }}</option>
                   @endforeach
                 </select>
               </div>
               <div>
-                <label for="c-country" class="block text-xs font-semibold text-slate-700 mb-1">আগ্রহের দেশ</label>
-                <input id="c-country" name="country" type="text" value="{{ old('country') }}" placeholder="যেমন: সৌদি আরব" class="h-12 w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">
+                <label for="c-country" class="block text-xs font-semibold text-slate-700 mb-1">{{ __('contact.form.country') }}</label>
+                <input id="c-country" name="country" type="text" value="{{ old('country') }}" placeholder="{{ __('contact.form.country_placeholder') }}" class="h-12 w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">
               </div>
             </div>
             <div>
-              <label for="c-msg" class="block text-xs font-semibold text-slate-700 mb-1">বিস্তারিত বার্তা বা প্রশ্ন</label>
-              <textarea id="c-msg" name="message" rows="4" placeholder="আপনার প্রশ্ন বা প্রয়োজনীয় তথ্য বিস্তারিত লিখুন…" class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">{{ old('message') }}</textarea>
+              <label for="c-msg" class="block text-xs font-semibold text-slate-700 mb-1">{{ __('contact.form.message') }}</label>
+              <textarea id="c-msg" name="message" rows="4" placeholder="{{ __('contact.form.message_placeholder') }}" class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">{{ old('message') }}</textarea>
             </div>
             <button type="submit" class="h-12 w-full rounded-xl bg-accent font-bold text-ink shadow-gold hover:bg-accent-400 transition flex items-center justify-center gap-2">
-              <i data-lucide="send" class="h-4 w-4"></i> ফর্মটি সাবমিট করুন
+              <i data-lucide="send" class="h-4 w-4"></i> {{ __('contact.form.submit') }}
             </button>
           </form>
         </div>
@@ -107,17 +107,17 @@
         <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
           <iframe title="ধানমন্ডি প্রধান কার্যালয় ম্যাপ" src="https://www.google.com/maps?q=Dhanmondi%20Dhaka&output=embed" class="h-64 w-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="p-4 bg-slate-50 text-xs text-slate-500">
-            গুগল ম্যাপে “আল-সফর ট্রাভেলস ধানমন্ডি” লিখে সহজে খুঁজে নিন। কার পার্কিং সুবিধা রয়েছে।
+            {{ __('contact.map.note') }}
           </div>
         </div>
 
         <div class="rounded-2xl border border-green-200 bg-green-50/70 p-6">
           <h3 class="font-bold text-green-900 flex items-center gap-2 mb-2">
-            <i data-lucide="message-circle" class="h-5 w-5 text-[#128C7E]"></i> জরুরি পরামর্শ দরকার?
+            <i data-lucide="message-circle" class="h-5 w-5 text-[#128C7E]"></i> {{ __('contact.urgent.title') }}
           </h3>
-          <p class="text-sm text-slate-700 mb-4">আমাদের সাপোর্ট টিম হোয়াটসঅ্যাপে সক্রিয় থাকে। যেকোনো সময় মেসেজ দিন।</p>
+          <p class="text-sm text-slate-700 mb-4">{{ __('contact.urgent.desc') }}</p>
           <a href="https://wa.me/8801700000000" target="_blank" class="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-5 py-2.5 text-sm font-bold text-white hover:brightness-105 transition">
-            <i data-lucide="message-circle" class="h-4 w-4"></i> হোয়াটসঅ্যাপে মেসেজ পাঠান
+            <i data-lucide="message-circle" class="h-4 w-4"></i> {{ __('contact.urgent.whatsapp') }}
           </a>
         </div>
       </div>

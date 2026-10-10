@@ -167,8 +167,9 @@ if (!function_exists('t')) {
      * Translatable columns are cast to array (e.g. ['bn' => ..., 'en' => ...]).
      * Bangla default, English fallback.
      */
-    function t($value, $locale = 'bn')
+    function t($value, $locale = null)
     {
+        $locale ??= app()->getLocale();
         if (is_string($value)) {
             $trimmed = trim($value);
             if (str_starts_with($trimmed, '{') || str_starts_with($trimmed, '[')) {
@@ -208,9 +209,13 @@ if (!function_exists('formatAmountShort')) {
 }
 
 if (!function_exists('bn_digits')) {
-    /** Convert 0-9 digits in any string to Bengali digits. */
+    /** Convert 0-9 digits to Bengali digits — unless locale is English. */
     function bn_digits($str)
     {
+        if (function_exists('app') && app()->getLocale() === 'en') {
+            return (string) $str;
+        }
+
         return str_replace(
             ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
             ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'],

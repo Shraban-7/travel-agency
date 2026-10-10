@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'বিদেশে উচ্চশিক্ষা (Study Abroad) — আল-সফর ট্রাভেলস')
+@section('title', __('study.meta.title'))
 @section('activePage', 'study')
 @section('content')
 <main id="main">
@@ -7,12 +7,12 @@
     <div class="pattern-geo absolute inset-0 opacity-20"></div>
     <div class="container relative z-10">
       <nav class="flex items-center gap-2 text-sm text-navy-200" aria-label="Breadcrumb">
-        <a href="{{ route('home') }}" class="hover:text-white">হোম</a>
+        <a href="{{ route('home') }}" class="hover:text-white">{{ __('common.home') }}</a>
         <i data-lucide="chevron-right" class="h-4 w-4"></i>
-        <span class="text-white font-medium">বিদেশে উচ্চশিক্ষা</span>
+        <span class="text-white font-medium">{{ __('study.hero.current') }}</span>
       </nav>
-      <h1 class="mt-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">বিশ্বমানের বিশ্ববিদ্যালয়ে উচ্চশিক্ষা</h1>
-      <p class="mt-3 max-w-2xl text-navy-100">সঠিক কোর্স নির্বাচন, অফার লেটার সংগ্রহ, স্কলারশিপ ও স্টুডেন্ট ভিসা আবেদনের পূর্ণাঙ্গ গাইডেন্স।</p>
+      <h1 class="mt-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">{{ __('study.hero.title') }}</h1>
+      <p class="mt-3 max-w-2xl text-navy-100">{{ __('study.hero.subtitle') }}</p>
     </div>
   </section>
 
@@ -21,29 +21,29 @@
       <form method="GET" action="{{ route('study.index') }}" class="rounded-2xl border border-slate-200 bg-white p-4 shadow-soft sm:p-6 mb-10">
         <div class="grid gap-4 md:grid-cols-4">
           <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">দেশ</label>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">{{ __('study.filter.country') }}</label>
             <select name="country" class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">
-              <option value="">সকল দেশ</option>
+              <option value="">{{ __('common.all_countries') }}</option>
               @foreach($countries as $c)
                 <option value="{{ $c->id }}" @selected((string) request('country') === (string) $c->id)>{{ t($c->name) }}</option>
               @endforeach
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">ডিগ্রি লেভেল</label>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">{{ __('study.filter.level') }}</label>
             <select name="level" class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">
-              <option value="">সকল লেভেল</option>
-              @foreach(['bachelor' => 'স্নাতক (Bachelor’s)', 'master' => 'মাস্টার্স (Master’s)', 'diploma' => 'ডিপ্লোমা', 'phd' => 'পিএইচডি'] as $key => $label)
+              <option value="">{{ __('study.filter.all_levels') }}</option>
+              @foreach(['bachelor' => __('study.filter.level_bachelor'), 'master' => __('study.filter.level_master'), 'diploma' => __('study.filter.level_diploma'), 'phd' => __('study.filter.level_phd')] as $key => $label)
                 <option value="{{ $key }}" @selected(request('level') === $key)>{{ $label }}</option>
               @endforeach
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">পড়ার বিষয়</label>
-            <input name="field" value="{{ request('field') }}" placeholder="যেমন: Computer Science" class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">{{ __('study.filter.field') }}</label>
+            <input name="field" value="{{ request('field') }}" placeholder="{{ __('study.filter.field_placeholder') }}" class="w-full rounded-xl border-slate-200 bg-slate-50 text-sm focus:border-primary-500">
           </div>
           <div class="flex items-end">
-            <button class="inline-flex h-11 items-center gap-2 rounded-xl bg-primary-700 px-6 text-sm font-semibold text-white hover:bg-primary-800"><i data-lucide="search" class="h-4 w-4"></i> খুঁজুন</button>
+            <button class="inline-flex h-11 items-center gap-2 rounded-xl bg-primary-700 px-6 text-sm font-semibold text-white hover:bg-primary-800"><i data-lucide="search" class="h-4 w-4"></i> {{ __('common.search') }}</button>
           </div>
         </div>
       </form>
@@ -67,9 +67,9 @@
               </div>
             </div>
             <div class="mt-5 space-y-2 border-y border-slate-100 py-4 text-sm">
-              <div class="flex justify-between"><span class="text-slate-500">অফারকৃত প্রোগ্রাম:</span><span class="font-bold text-ink">{{ $uni->programs_count }}টি</span></div>
-              <div class="flex justify-between"><span class="text-slate-500">টিউশন ফি শুরু:</span><span class="font-bold text-primary-800 font-en">{{ $minFee ? $feeCurrency.' '.number_format($minFee).' / year' : '—' }}</span></div>
-              <div class="flex justify-between"><span class="text-slate-500">পরবর্তী ইনটেক:</span><span class="font-semibold text-slate-800">{{ $nextIntake ? t($nextIntake->intake_name) : '—' }}</span></div>
+              <div class="flex justify-between"><span class="text-slate-500">{{ __('study.card.programs') }}</span><span class="font-bold text-ink">{{ __('study.card.programs_count', ['count' => $uni->programs_count]) }}</span></div>
+              <div class="flex justify-between"><span class="text-slate-500">{{ __('study.card.fee_from') }}</span><span class="font-bold text-primary-800 font-en">{{ $minFee ? $feeCurrency.' '.number_format($minFee).' / year' : '—' }}</span></div>
+              <div class="flex justify-between"><span class="text-slate-500">{{ __('study.card.next_intake') }}</span><span class="font-semibold text-slate-800">{{ $nextIntake ? t($nextIntake->intake_name) : '—' }}</span></div>
             </div>
             <div class="mt-5 flex items-center justify-between mt-auto pt-2">
               @if($nextIntake?->application_deadline)
@@ -77,11 +77,11 @@
               @else
                 <span></span>
               @endif
-              <a href="{{ route('study.show', $uni->id) }}" class="rounded-xl bg-primary-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-800 transition">বিস্তারিত</a>
+              <a href="{{ route('study.show', $uni->id) }}" class="rounded-xl bg-primary-700 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-800 transition">{{ __('common.view_details') }}</a>
             </div>
           </article>
         @empty
-          <p class="col-span-full text-center text-slate-500">কোনো বিশ্ববিদ্যালয় পাওয়া যায়নি। ফিল্টার বদলে আবার চেষ্টা করুন।</p>
+          <p class="col-span-full text-center text-slate-500">{{ __('study.empty') }}</p>
         @endforelse
       </div>
 
