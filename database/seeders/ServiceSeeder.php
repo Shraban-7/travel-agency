@@ -22,7 +22,7 @@ class ServiceSeeder extends Seeder
                     'bn' => 'অভিজ্ঞ গাইড, মানসম্মত হোটেল ও ঝামেলাহীন ভিসা প্রসেসিংসহ সম্পূর্ণ হজ ও ওমরাহ সেবা।',
                     'en' => 'Complete Hajj & Umrah service with experienced guides, quality hotels and hassle-free visa processing.',
                 ],
-                'icon' => 'kaaba',
+                'icon' => 'moon-star',
                 'cover_image' => null,
                 'sort_order' => 1,
                 'is_active' => true,

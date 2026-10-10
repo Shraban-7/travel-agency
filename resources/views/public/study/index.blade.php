@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', __('study.meta.title'))
+@section('title', __('বিদেশে উচ্চশিক্ষা'))
 @section('activePage', 'study')
 @section('content')
 <main id="main">

@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', __('deadlines.meta.title'))
+@section('title', __('আসন্ন ডেডলাইন'))
 @section('activePage', 'deadlines')
 @section('content')
 <main id="main">

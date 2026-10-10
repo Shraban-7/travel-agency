@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', t($university->name).__('study.show.title_suffix'))
+@section('title', t($university->name))
 @section('activePage', 'study')
 @section('content')
 <main id="main" class="py-8 lg:py-12">

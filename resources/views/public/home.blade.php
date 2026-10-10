@@ -1,5 +1,4 @@
 @extends('layouts.public')
-@section('title', __('আল-সফর ট্রাভেলস — হজ্জ, উমরাহ, বিদেশে চাকরি ও উচ্চশিক্ষা'))
 @section('activePage', 'home')
 @section('content')
 <main id="main">
@@ -230,25 +229,92 @@
         </div>
       </div>
       <div class="lg:col-span-5">
-        <div class="rounded-2xl bg-white p-6 text-ink shadow-2xl reveal">
-          <div class="flex items-center justify-between">
-            <h3 class="text-lg font-bold">{{ __('আসন্ন ইনটেক') }}</h3>
-            <i data-lucide="calendar-range" class="h-5 w-5 text-primary-700"></i>
+        <div class="relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 shadow-2xl reveal md:p-7 text-ink">
+          {{-- Decorative soft glow --}}
+          <div class="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary-100/50 blur-2xl"></div>
+
+          {{-- Header --}}
+          <div class="relative flex items-center justify-between border-b border-slate-100 pb-4">
+            <div class="flex items-center gap-3">
+              <span class="grid h-10 w-10 place-items-center rounded-xl bg-primary-50 text-primary-700 ring-1 ring-primary-100">
+                <i data-lucide="calendar-range" class="h-5 w-5"></i>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold text-ink leading-tight">{{ __('আসন্ন ইনটেক') }}</h3>
+                <p class="text-xs text-slate-500">{{ __('আবেদনের শেষ তারিখ ও কাউন্টডাউন') }}</p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 ring-1 ring-emerald-500/20">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              {{ __('ভর্তি চলছে') }}
+            </span>
           </div>
-          <ul class="mt-4 divide-y divide-slate-100">
+
+          {{-- Intakes List --}}
+          <div class="relative mt-4 space-y-3">
             @forelse($intakes as $in)
-              <li class="flex items-center gap-4 py-3.5">
-                <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary-50 text-center font-en text-xs font-bold leading-tight text-primary-800">{{ $in->start_date ? $in->start_date->format('M').'<br>'.$in->start_date->format('Y') : '—' }}</span>
-                <div class="min-w-0 flex-1"><p class="font-semibold">{{ $in->program ? t($in->program->university->name).' — '.t($in->intake_name) : t($in->intake_name) }}</p><p class="text-sm text-slate-500">{{ __('আবেদনের শেষ: :date', ['date' => $in->application_deadline?->format('d M Y')]) }}</p></div>
+              <div class="group flex flex-col gap-3 rounded-2xl border border-slate-100 bg-slate-50/60 p-3.5 transition-all duration-200 hover:border-primary-200 hover:bg-white hover:shadow-md sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex items-center gap-3.5 min-w-0">
+                  {{-- Calendar Tile Badge --}}
+                  <div class="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl border border-slate-200/80 bg-white text-center shadow-2xs transition-colors group-hover:border-primary-200 group-hover:bg-primary-50/50">
+                    <span class="font-en text-[11px] font-bold uppercase tracking-wider text-primary-700 leading-none">
+                      {{ $in->start_date ? $in->start_date->format('M') : '—' }}
+                    </span>
+                    <span class="font-en text-sm font-black text-ink leading-none mt-1">
+                      {{ $in->start_date ? bn_digits($in->start_date->format('Y')) : '' }}
+                    </span>
+                  </div>
+
+                  {{-- Details --}}
+                  <div class="min-w-0 flex-1">
+                    @if($in->program && $in->program->university)
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        @if($in->program->university->country?->flag_code)
+                          <img src="https://flagcdn.com/{{ $in->program->university->country->flag_code }}.svg" alt="" class="h-3.5 w-5 rounded-xs object-cover shadow-2xs" loading="lazy">
+                        @endif
+                        <a href="{{ route('study.show', $in->program->university) }}" class="truncate font-semibold text-slate-800 transition-colors hover:text-primary-700 text-sm md:text-[15px]">
+                          {{ t($in->program->university->name) }}
+                        </a>
+                      </div>
+                      <p class="mt-0.5 truncate text-xs text-slate-600">
+                        {{ t($in->program->name) }} <span class="text-slate-300">•</span> <span class="font-medium text-primary-700">{{ t($in->intake_name) }}</span>
+                      </p>
+                    @else
+                      <p class="truncate font-semibold text-slate-800 text-sm md:text-[15px]">
+                        {{ t($in->intake_name) }}
+                      </p>
+                    @endif
+
+                    <div class="mt-1 flex items-center gap-1.5 text-[12px] text-slate-500">
+                      <i data-lucide="clock" class="h-3 w-3 text-slate-400"></i>
+                      <span>{{ __('আবেদনের শেষ: :date', ['date' => $in->application_deadline ? bn_digits($in->application_deadline->format('d M Y')) : '—']) }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {{-- Countdown Tag --}}
                 @if($in->application_deadline)
-                  <span data-countdown="{{ $in->application_deadline->toIso8601String() }}" class="shrink-0 rounded-full border border-primary-100 bg-primary-50 px-2.5 py-1 text-xs font-semibold text-primary-800"><span data-cd-label>…</span></span>
+                  <div class="shrink-0 self-start pl-17 sm:self-center sm:pl-0">
+                    <span data-countdown="{{ $in->application_deadline->toIso8601String() }}" class="inline-flex items-center gap-1.5 rounded-full border border-primary-200/70 bg-primary-50 px-3 py-1 font-en text-xs font-bold text-primary-800 shadow-2xs">
+                      <span class="h-1.5 w-1.5 rounded-full bg-primary-600"></span>
+                      <span data-cd-label>…</span>
+                    </span>
+                  </div>
                 @endif
-              </li>
+              </div>
             @empty
-              <li class="py-3.5 text-sm text-slate-500">{{ __('আসন্ন ইনটেকের তথ্য শীঘ্রই আসছে।') }}</li>
+              <div class="rounded-2xl border border-dashed border-slate-200 p-8 text-center">
+                <i data-lucide="calendar-x-2" class="mx-auto h-8 w-8 text-slate-400"></i>
+                <p class="mt-2 text-sm text-slate-500">{{ __('আসন্ন ইনটেকের তথ্য শীঘ্রই আসছে।') }}</p>
+              </div>
             @endforelse
-          </ul>
-          <a href="{{ route('study.index') }}" class="mt-4 flex h-11 items-center justify-center rounded-xl bg-primary-700 font-semibold text-white hover:bg-primary-800">{{ __('বিশ্ববিদ্যালয় খুঁজুন') }}</a>
+          </div>
+
+          {{-- CTA Button --}}
+          <a href="{{ route('study.index') }}" class="group mt-5 flex h-11 items-center justify-center gap-2 rounded-xl bg-primary-700 font-semibold text-white shadow-soft transition-all hover:bg-primary-800 hover:shadow-lift">
+            <span>{{ __('বিশ্ববিদ্যালয় খুঁজুন') }}</span>
+            <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1"></i>
+          </a>
         </div>
       </div>
     </div>

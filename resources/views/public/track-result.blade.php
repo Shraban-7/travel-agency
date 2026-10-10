@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', __('track.result.meta.title'))
+@section('title', __('আবেদনের অগ্রগতি'))
 @section('activePage', 'track')
 @section('content')
 <main id="main">

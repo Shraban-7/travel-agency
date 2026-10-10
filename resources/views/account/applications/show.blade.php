@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'আবেদন '.($application->tracking_code).' — '.t($settings['site_name'] ?? 'আল-সফর ট্রাভেলস'))
+@section('title', __('আবেদন :code', ['code' => $application->tracking_code]))
 @section('activePage', 'account')
 
 @section('content')

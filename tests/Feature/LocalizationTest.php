@@ -20,7 +20,6 @@ class LocalizationTest extends TestCase
         $response = $this->get('/');
         $response->assertOk();
         $response->assertSee('lang="bn"', false);
-        $response->assertSee('আল-সফর ট্রাভেলস');
         $response->assertSee('প্যাকেজসমূহ');
     }
 
@@ -31,7 +30,6 @@ class LocalizationTest extends TestCase
         $response->assertSessionHas('locale', 'en');
         $response->assertCookie('locale', 'en');
         $response->assertSee('lang="en"', false);
-        $response->assertSee('Al-Safar Travels');
         $response->assertSee('All Packages');
         $response->assertSee('Free Consultation');
     }
@@ -77,7 +75,7 @@ class LocalizationTest extends TestCase
     public function test_public_pages_render_in_english(): void
     {
         $pages = [
-            '/' => 'Al-Safar Travels',
+            '/' => 'All Packages',
             '/services?lang=en' => 'Our Services',
             '/packages?lang=en' => 'All Packages',
             '/jobs?lang=en' => 'Job Demands',

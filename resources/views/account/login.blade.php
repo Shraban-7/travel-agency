@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', __('account.login.title').' — '.t($settings['site_name'] ?? 'আল-সফর ট্রাভেলস'))
+@section('title', __('account.login.title'))
 @section('activePage', 'account')
 
 @section('content')

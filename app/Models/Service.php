@@ -42,4 +42,14 @@ class Service extends Model
     {
         return $this->hasMany(Faq::class);
     }
+
+    public function getIconAttribute($value): string
+    {
+        $map = [
+            'kaaba' => 'moon-star',
+            'palm-tree' => 'tree-palm',
+        ];
+
+        return $map[$value] ?? ($value ?: 'briefcase');
+    }
 }

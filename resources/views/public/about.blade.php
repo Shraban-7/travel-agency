@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', __('about.meta.title'))
+@section('title', __('আমাদের সম্পর্কে'))
 @section('activePage', 'about')
 @section('content')
 <main id="main">

@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', t($job->title).__('jobs.show.title_suffix'))
+@section('title', t($job->title))
 @section('activePage', 'jobs')
 @section('content')
 <main id="main" class="py-8 lg:py-12">

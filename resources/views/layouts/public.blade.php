@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title', t($settings['seo_title'] ?? $settings['site_name'] ?? 'ট্রাভেল এজেন্সি'))</title>
+  @php
+    $siteName = t($settings['site_name'] ?? 'আস্থা ট্রাভেল এজেন্সি');
+    $pageTitle = trim($__env->yieldContent('title'));
+  @endphp
+  <title>@if($pageTitle !== ''){{ $pageTitle }}@if(!str_contains($pageTitle, $siteName)) — {{ $siteName }}@endif @else{{ t($settings['seo_title'] ?? $settings['site_name'] ?? 'আস্থা ট্রাভেল এজেন্সি') }}@endif</title>
   <meta name="description" content="@yield('meta_description', t($settings['seo_description'] ?? ''))">
   <link rel="alternate" hreflang="bn" href="{{ url('/') }}">
   <link rel="alternate" hreflang="en" href="{{ url('/en') }}">
@@ -53,8 +57,8 @@
           <button type="button" data-lang="bn" class="rounded px-2 py-0.5 font-medium">{{ __('বাং') }}</button>
           <button type="button" data-lang="en" class="rounded px-2 py-0.5 font-en font-medium">EN</button>
         </div>
-        <a href="{{ $facebook }}" aria-label="Facebook" class="hover:text-white"><i data-lucide="facebook" class="h-4 w-4"></i></a>
-        <a href="{{ $youtube }}" aria-label="YouTube" class="hover:text-white"><i data-lucide="youtube" class="h-4 w-4"></i></a>
+        <a href="{{ $facebook }}" aria-label="Facebook" class="hover:text-white"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="{{ $youtube }}" aria-label="YouTube" class="hover:text-white"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
       </div>
     </div>
   </div>
@@ -82,8 +86,16 @@
             <div class="rounded-2xl border border-slate-100 bg-white p-2 shadow-lift">
               @if(!empty($services) && count($services))
                 @foreach($services as $svc)
+                  @php
+                    $rawIcon = is_object($svc) ? ($svc->icon ?? 'briefcase') : ($svc['icon'] ?? 'briefcase');
+                    $sIcon = match($rawIcon) {
+                      'kaaba' => 'moon-star',
+                      'palm-tree' => 'tree-palm',
+                      default => $rawIcon ?: 'briefcase'
+                    };
+                  @endphp
                   <a href="{{ route('services') }}#{{ is_object($svc) ? $svc->slug : ($svc['slug'] ?? '') }}" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-slate-700 hover:bg-primary-50 hover:text-primary-800">
-                    <span class="grid h-9 w-9 place-items-center rounded-lg bg-primary-50 text-primary-700"><i data-lucide="{{ is_object($svc) ? ($svc->icon ?? 'briefcase') : ($svc['icon'] ?? 'briefcase') }}" class="h-[18px] w-[18px]"></i></span>{{ is_object($svc) ? t($svc->title) : ($svc['label'] ?? '') }}
+                    <span class="grid h-9 w-9 place-items-center rounded-lg bg-primary-50 text-primary-700"><i data-lucide="{{ $sIcon }}" class="h-[18px] w-[18px]"></i></span>{{ is_object($svc) ? t($svc->title) : ($svc['label'] ?? '') }}
                   </a>
                 @endforeach
               @else
@@ -230,11 +242,11 @@
           <p class="flex gap-3"><i data-lucide="mail" class="mt-1 h-4 w-4 shrink-0 text-accent"></i><a href="mailto:{{ $email }}" class="font-en hover:text-white">{{ $email }}</a></p>
         </div>
         <div class="mt-6 flex gap-2">
-          <a href="{{ $facebook }}" aria-label="Facebook" class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 transition hover:bg-accent hover:text-ink"><i data-lucide="facebook" class="h-5 w-5"></i></a>
-          <a href="{{ $youtube }}" aria-label="YouTube" class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 transition hover:bg-accent hover:text-ink"><i data-lucide="youtube" class="h-5 w-5"></i></a>
-          <a href="{{ $whatsapp }}" aria-label="WhatsApp" class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 transition hover:bg-accent hover:text-ink"><i data-lucide="message-circle" class="h-5 w-5"></i></a>
+          <a href="{{ $facebook }}" aria-label="Facebook" class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 transition hover:bg-accent hover:text-ink"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="{{ $youtube }}" aria-label="YouTube" class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 transition hover:bg-accent hover:text-ink"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="{{ $whatsapp }}" aria-label="WhatsApp" class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 transition hover:bg-accent hover:text-ink"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8zM12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12S18.6 0 12 0z"/></svg></a>
           @if($instagram)
-          <a href="{{ $instagram }}" aria-label="Instagram" class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 transition hover:bg-accent hover:text-ink"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+          <a href="{{ $instagram }}" aria-label="Instagram" class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 transition hover:bg-accent hover:text-ink"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
           @endif
         </div>
       </div>

@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', __('jobs.meta.title'))
+@section('title', __('বিদেশে চাকরি'))
 @section('activePage', 'jobs')
 @section('content')
 <main id="main">

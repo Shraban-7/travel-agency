@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', t($package->title).__('packages.show.title_suffix'))
+@section('title', t($package->title))
 @section('activePage', 'packages')
 @section('content')
 <main id="main" class="py-8 lg:py-12">
